@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>黄淮二手交易后台管理</title>
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+			}
+			
+			#header{
+				height: 60px;
+				background-color: #FFFFFF;
+				position: relative;
+				text-align: center;
+				background-color: white;
+			}
+			#header h1{
+				margin-left: 20px;
+			}
+			
+			.left {
+				height: 650px;
+				width: 310px;
+				background-color: plum;
+				float: left;
+				margin-left: 183px;
+				/*margin-right: 15px;*/
+			}
+			.left a{
+				text-decoration: none;
+			}
+			ul li {
+				font-family: "微软雅黑";
+				font-size: 22px;
+				text-align: center;
+				line-height: 100px;
+				/*vertical-align: middle;*/
+				height: 100px;
+				list-style-type: none;
+				padding-bottom: 20px;
+			}
+			.right{
+				height: 650px;
+				width: 1210px;
+				background-color: papayawhip;
+				margin-right: 198px;
+				float: right;
+				border: solid 1px red;
+				text-align: center;
+			}
+			.right span{
+				font-size: 18px;
+				font-family: 微软雅黑;
+				margin: 10px;
+				width: 75%;
+			}
+			.right_one{
+				width: 950px;
+				/*border: solid 1px red;*/
+				margin: 10px 5px;
+				text-align: center;
+			}
+			.search {
+  				float: right;
+				display: inline;
+				width: 990px;
+				height: 40px;
+				border: 1px solid none;//设置边框  
+				background-color: #f2f2f5;  
+				margin:25px -35px;
+			}
+			.span_two{
+				color: red;
+			}
+			.search_input {
+			  width: 300px;  
+			  float: right;
+			  display: inline;  
+			  height: 33px;
+			  line-height: 35px;
+			  padding: 0 8px;
+			  margin-right: 0px;
+			}  
+			.search_btn {
+			  width: 35px;
+			  height: 35px;
+			  background: url(img/search.jpg) no-repeat;
+			  float: right;  
+			  display: inline;
+			  margin-right: -355px;
+			}
+			.right table{
+				width: 1200px;
+				height: 450px;
+				margin:60px auto;
+				text-align: center;
+			}
+			.right_footer{
+				width: 800px;
+				display: table;
+				height: 20px;
+				/*float: left;*/
+				margin: 0 auto;
+				margin-top: -65px;
+				margin-left: 80px;
+				padding-bottom: 0;
+				
+			}
+			.right_footer a{
+				text-decoration: none;
+				/*text-align: center;*/
+			}
+			.right_foot li{
+				width: 30%;
+				display: table-cell;
+				font-family: "微软雅黑";
+				font-size: 14px;
+				color: #DDA0DD;
+				margin-right: 10px;
+				
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div id="header">
+			<h1>
+				<a>
+					<span style="font-family: '微软雅黑';
+				font-size: 28px;color: #0bb9f8;font-weight: bolder;">黄淮&nbsp;&nbsp;</span>
+				<span style="font-family: '微软雅黑';font-size: 28px;font-weight: bolder;">二手工坊后台管理</span>
+				</a>
+				<img src=""/>
+			</h1>
+		</div>
+		<div class="left">
+			<ul>
+				<li><a href="">商品管理</a></li>
+				<li><a href="">会员管理</a></li>
+				<li><a href="">消息管理</a></li>
+				<li><a href="">公告管理</a></li>
+				<li><a href="">个人信息管理</a></li>
+			</ul>
+		</div>
+		<div class="right">
+			<span>商品信息列表</span><hr/>
+			<div class="right_one">
+				<div class="search">
+					<span class="span_two">商品下架</span>
+					<input type="text" class="search_input" placeholder="请输入搜索词"/>
+					<input type="button" class="search_btn"/>
+				</div>
+				<table border="" cellspacing="" cellpadding="">
+					<tr>
+							<th></th>
+							<th><input type="checkbox" onclick="swapCheck()" ></th>
+							<th>ID</th>
+							<th>商品名称</th>
+							<th>商品原价</th>
+							<th>商品售价</th>
+							<th>商品数量</th>
+							<th>新旧成度</th>
+							<th>商品描述</th>
+							<th>发布时间</th>
+							<th>类型</th>
+							<th>是否下架</th>
+							<th>发布者ID</th>
+							<th>点击详情</th>
+						</tr>
+					<tr>
+							<td>1</td>
+							<td><input type="checkbox"/></td>
+							<td>1</td>
+							<td>物理书本</td>
+							<td>100</td>
+							<td>50</td>
+							<td>2</td>
+							<td>八成新</td>
+							<td>八成新的物理书本</td>
+							<td>2018-5-21</td>
+							<td>书本</td>
+							<td>已下架</td>
+							<td>1</td>
+							<td>详细信息</td>
+						</tr>
+					<tr>
+							<td>2</td>
+							<td><input type="checkbox"/></td>
+							<td>2</td>
+							<td>英语书本</td>
+							<td>60</td>
+							<td>30</td>
+							<td>1</td>
+							<td>八成新</td>
+							<td>八成新的英语书本</td>
+							<td>2018-5-21</td>
+							<td>书本</td>
+							<td>已下架</td>
+							<td>1</td>
+							<td>详细信息</td>
+						</tr>
+					<tr>
+							<td>3</td>
+							<td><input type="checkbox"/></td>
+							<td>3</td>
+							<td>语文书本</td>
+							<td>80</td>
+							<td>40</td>
+							<td>2</td>
+							<td>六成新</td>
+							<td>六成新的语文书本</td>
+							<td>2018-5-21</td>
+							<td>书本</td>
+							<td>已下架</td>
+							<td>1</td>
+							<td>详细信息</td>
+						</tr>
+					<tr>
+							<td>4</td>
+							<td><input type="checkbox"/></td>
+							<td>4</td>
+							<td>华为手机</td>
+							<td>100</td>
+							<td>50</td>
+							<td>1</td>
+							<td>八成新</td>
+							<td>八成新的华为手机</td>
+							<td>2018-5-21</td>
+							<td>手机</td>
+							<td>已上架</td>
+							<td>1</td>
+							<td>详细信息</td>
+						</tr>
+					<tr>
+							<td>5</td>
+							<td><input type="checkbox"/></td>
+							<td>5</td>
+							<td>苹果手机</td>
+							<td>100</td>
+							<td>50</td>
+							<td>1</td>
+							<td>六成新</td>
+							<td>六成新的苹果手机</td>
+							<td>2018-5-21</td>
+							<td>手机</td>
+							<td>已上架</td>
+							<td>1</td>
+							<td>详细信息</td>
+						</tr>
+					<tr>
+							<td>6</td>
+							<td><input type="checkbox"/></td>
+							<td>6</td>
+							<td>小米手机</td>
+							<td>100</td>
+							<td>50</td>
+							<td>1</td>
+							<td>八成新</td>
+							<td>八成新的小米手机</td>
+							<td>2018-5-21</td>
+							<td>手机</td>
+							<td>已上架</td>
+							<td>1</td>
+							<td>详细信息</td>
+						</tr>
+					<tr>
+							<td>7</td>
+							<td><input type="checkbox"/></td>
+							<td>7</td>
+							<td>Java书本</td>
+							<td>100</td>
+							<td>50</td>
+							<td>2</td>
+							<td>八成新</td>
+							<td>八成新的Java书本</td>
+							<td>2018-5-21</td>
+							<td>书本</td>
+							<td>已下架</td>
+							<td>1</td>
+							<td>详细信息</td>
+						</tr>
+					<tr>
+							<td>8</td>
+							<td><input type="checkbox"/></td>
+							<td>8</td>
+							<td>C语言</td>
+							<td>100</td>
+							<td>50</td>
+							<td>2</td>
+							<td>五成新</td>
+							<td>五成新的C语言书本</td>
+							<td>2018-5-21</td>
+							<td>书本</td>
+							<td>已下架</td>
+							<td>1</td>
+							<td>详细信息</td>
+						</tr>
+					<tr>
+							<td>9</td>
+							<td><input type="checkbox"/></td>
+							<td>9</td>
+							<td>vivo手机</td>
+							<td>100</td>
+							<td>50</td>
+							<td>1</td>
+							<td>七成新</td>
+							<td>七成新的vivo手机</td>
+							<td>2018-5-21</td>
+							<td>手机</td>
+							<td>已上架</td>
+							<td>1</td>
+							<td>详细信息</td>
+						</tr>
+					<tr>
+							<td>10</td>
+							<td><input type="checkbox"/></td>
+							<td>10</td>
+							<td>计算机网络</td>
+							<td>100</td>
+							<td>50</td>
+							<td>2</td>
+							<td>五成新</td>
+							<td>五成新的计算机网络书本</td>
+							<td>2018-5-21</td>
+							<td>书本</td>
+							<td>已下架</td>
+							<td>1</td>
+							<td>详细信息</td>
+						</tr>
+				</table>
+				<div class="right_footer">
+					<ul class="right_foot">
+						<li><a href="">首&nbsp;页</a></li>
+						<li><a href="">上一页</a></li>
+						<li><a href="">下一页</a></li>
+						<li><a href="">尾&nbsp;页</a></li>
+					</ul>	
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

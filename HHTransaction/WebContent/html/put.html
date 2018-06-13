@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>发布</title>
+		<link rel="stylesheet" type="text/css" href="css/my_css.css" />
+		<style type="text/css">
+			.put_goods {
+				position: absolute;
+				width: 90%;
+				height: 580px;
+				margin: 20px 30px;
+			}
+			
+			.put_goods h2 {
+				font-size: 24px;
+				text-align: center;
+				color: rgb(11, 145, 248);
+			}
+			
+			#goods_form {
+				width: 1200px;
+				height: 520px;
+				background-color: #fff;
+				padding-top: 10px;
+				box-shadow: 0 0 10px 3px #CCCCCC;
+				margin-left: 45px;
+			}
+			
+			#g_img {
+				width: 420px;
+				height: 420px;
+				margin-left: 50px;
+			}
+			
+			#goods_f {
+				width: 580px;
+				height: 400px;
+				/*border: 1px solid #ccc;*/
+				position: absolute;
+				right: 60px;
+				top: 60px;
+				padding: 20px;
+				background-color: #FFFFFF;
+			}
+			
+			#goods_f div {
+				height: 50px;
+				margin-left: 80px;
+			}
+			
+			#goods_f label {
+				font-size: 20px;
+				color: rgb(11, 145, 248);
+			}
+			
+			#goods_f input {
+				width: 300px;
+				height: 25px;
+			}
+			
+			#goods_f #goods_text {
+				height: 210px;
+				position: relative;
+			}
+			
+			#goods_f #goods_text label {
+				position: absolute;
+				left: 0;
+				top: 0;
+			}
+			
+			#goods_f textarea {
+				position: absolute;
+				left: 105px;
+				width: 294px;
+				height: 200px;
+				padding: 5px 3px 3px 5px;
+			}
+			
+			#goods_f #sub_btn {
+				position: absolute;
+				bottom: 0;
+				left: 50px;
+				background-color: #EF5350;
+				color: #FFFFFF;
+				border: none;
+				width: 150px;
+				height: 40px;
+				cursor: pointer;
+				margin-left: 100px;
+				margin-top: 10px;
+			}
+		</style>
+		<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="js/my-js.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				
+				//头像
+				//在input file内容改变的时候触发事件
+				$('#goods_imgfile').change(function() {
+					//获取input file的files文件数组;
+					//$('#filed')获取的是jQuery对象，.get(0)转为原生对象;
+					//这边默认只能选一个，但是存放形式仍然是数组，所以取第一个元素使用[0];
+					var file = $('#goods_imgfile').get(0).files[0];
+					//创建用来读取此文件的对象
+					var reader = new FileReader();
+					//使用该对象读取file文件
+					reader.readAsDataURL(file);
+					//读取文件成功后执行的方法函数
+					reader.onload = function(e) {
+						//读取成功后返回的一个参数e，整个的一个进度事件
+						console.log(e);
+						//选择所要显示图片的img，要赋值给img的src就是e中target下result里面
+						//的base64编码格式的地址
+						$('#goods_img').get(0).src = e.target.result;
+					}
+				})
+
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="header">
+			<div><span>首页</span></div>
+		</div>
+		<div class="content">
+			<div class="banner">
+				<div id="my_img">
+					<a href="my.html"><img/></a>
+				</div>
+				<div id="myname">
+					<a href="#"><span></span></a>
+				</div>
+				<ul class="banner-ul">
+					<li>
+						<a href="#">编辑资料</a>
+					</li>
+					<li>
+						<a href="#">我的消息</a>
+					</li>
+					<li><a href="#">购物车</a></li>
+					<li>
+						<a href="#">我买到的</a>
+					</li>
+					<li>
+						<a href="#">我的闲置</a>
+					</li>
+					<li class="current">
+						<a href="#">发布闲置</a>
+					</li>
+					<li>
+						<a href="#">个人设置</a>
+					</li>
+				</ul>
+			</div>
+			<div class="info">
+
+				<div class="put_goods">
+					<div id="goods_h2">
+						<h2>发布闲置</h2>
+					</div>
+					<br />
+					<!--<div id="goods_form">-->
+					<form action="" method="post" id="goods_form">
+							
+						<div id="g_img">
+							<img src="#" id="goods_img" width="400px" height="400px" /><br />
+							<label>上传图片：</label><input type="file" name="goods_imgfile" id="goods_imgfile" value="" accept="image/*" /><br />
+
+						</div>
+
+						<!--<form action="" method="post" id="goods_f">-->
+						<div id="goods_f">
+							<div>
+								<label>标&emsp;&emsp;题：</label>
+								<input type="text" name="goods_tit" id="goods_tit" placeholder="例如：联想电脑" autofocus="autofocus" />
+							</div>
+							<div>
+								<label>价&emsp;&emsp;格：</label>
+								<input type="number" name="goods_price" id="goods_price" value="" />
+							</div>
+							<div>
+								<label>商品类别：</label>
+								<select name="goods_type" id="goods_type">
+									<option value="电子产品">电子产品</option>
+									<option value="服装配饰">服装配饰</option>
+									<option value="文娱教育">文娱教育</option>
+									<option value="美容美化">美容美化</option>
+									<option value="生活用品">生活用品</option>
+								</select>
+
+							</div>
+							<div id="goods_text">
+								<label>商品详情：</label>
+								<textarea name="goods_info" placeholder="商品详细信息"></textarea>
+							</div>
+							<input type="submit" value="发布" id="sub_btn" />
+						
+						</div>
+						<!--</form>-->
+					</form>
+					<!--</div>-->
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

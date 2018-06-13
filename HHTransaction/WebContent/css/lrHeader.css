@@ -1,0 +1,85 @@
+*{
+	padding: 0;
+	margin: 0;
+}
+.header {
+	height: 60px;
+	position: relative;
+	background-color: #86ADF3;
+}
+/*图标*/
+.header .logo {
+	padding-left: 200px;
+}
+/*右边的登录注册*/
+.header .hright {
+	float: right;
+	font: 16px/60px "微软雅黑";
+	position: absolute;
+	right: 200px;
+}
+.lo{
+	height: 475px;
+	/*background: #EA3754;*/
+}
+/*登录框*/
+.login{
+	position: relative;
+	/*float: right;*/
+	top: 35px;
+	height: 400px;
+	width: 400px;
+	margin: 0 auto;
+	border: solid 1px gainsboro;
+	border-radius: 8px;
+	box-shadow: -1px -1px -1px -1px #2F4F4F;
+	/*background-color: yellowgreen;*/
+}
+.login h2{
+	text-align: center;
+	color: cornflowerblue;
+	padding-top: 30px;
+}
+/*表格样式*/
+.login form{
+	height: 250px;
+	width: 350px;
+	margin: 10px auto;
+	/*background-color: orange;*/
+}
+/*ul样式*/
+.login ul {
+	list-style: none;
+	/*padding: 15px auto;*/
+}
+.login ul li{
+	height: 50px;
+	margin: 20px; 
+	font:  18px/50px "微软雅黑";
+}
+.login ul li input{
+	width: 160px;
+	height: 25px;
+}			
+
+.login p{
+	padding-top: 10px;
+	text-align: center;
+}
+
+/*按钮*/
+.btn{
+	height: 30px;
+	width: 200px;
+	margin: 0 auto;
+	/*background-color: EA3754;*/
+}
+.btn>input{
+	/*padding: 0;*/
+	width: 200px;
+	height: 30px;
+	/*margin-left: 50px;*/
+	background-color: cornflowerblue;
+	border: none;
+	border-radius: 5px;
+}

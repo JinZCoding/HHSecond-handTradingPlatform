@@ -1,0 +1,240 @@
+*{
+	padding: 0;
+	margin: 0;
+	font-family: "微软雅黑";
+	font-size: 14px;
+}
+body{
+	/*width: 1680px;
+	height: 800px;*/
+	margin: 0 auto;
+}
+
+#header{
+	width: 100%;
+	height: 60px;
+	line-height: 60px;
+	/*background-color: black;*/
+	position: relative;
+	/*clear: both;*/
+	box-shadow: 0px 1px 1px 1px #ccc;
+
+}
+#header>div{
+	width: 85%;
+	height: 60px;
+	background-color: #FFFFFF;
+	margin: 0 auto;
+}
+/*网站Logo*/
+#logo{
+	/*float: left;*/
+	left: 10px;
+    top: 4px;
+    width: 200px;
+    z-index: 166;
+   /* background-color: red;*/
+}
+/*搜索框*/
+#search{
+    position: absolute;
+	left: 486px;
+    top: 8px;
+    width: 350px;
+}
+
+#search input{
+	background-color: #EEEEEE;
+	height: 35px;
+	width: 350px;
+	border: none;
+	color: #D5D5D5;
+	font-size: 20px;
+	padding-left: 10px;
+}
+/*向右浮动的两个div*/
+.right{
+	/*向右浮动*/
+	float: right;
+}
+.float-right{
+	/*向右浮动*/
+	float: right;
+	padding-right: 50px;
+	/*clear: both;*/
+}
+.float-right a{
+	color: black;
+	text-decoration: none;
+}
+/*nav的样式*/
+#navlist{
+	text-align: center;
+	list-style: none;
+	margin-top: 15px;
+    /*zoom: 1;*/
+}
+/*li样式*/
+#navlist li{
+	position: relative;
+    width: 127px;
+    height: 37px;
+    line-height: 37px;
+    background-color:#EF5350;
+    float: left;
+    margin-left: 10px;
+    box-shadow: 0px 2px 2px 2px #ccc;
+}
+#navlist li:hover{
+	background-color: #F16A67;
+}
+
+#navlist li a{
+	text-decoration: none;
+	color: #FFFFFF;
+}
+/*我的*/
+#my-2{
+	position: absolute;
+	top: 38px;
+	width: 137px;
+	text-align: center;
+	list-style: none;
+	margin-left: -10px;
+	z-index: 9999;
+	position: absolute;
+}
+#my-2 li{
+    width: 127px;
+    height: 40px;
+    line-height: 40px;
+    background-color:#FFFFFF;
+    box-shadow: 0px 1px 1px 1px #ccc;
+ 
+}
+#my-2 li:hover{
+	background-color: #E1E1E1;
+}
+/*内容区样式*/
+html,body{  
+    margin: 0;  
+    padding: 0;  
+    height: 100%;  
+    width: 100%;  
+}  
+
+#content{
+	height: 90%;
+	width: 85%;
+	position: relative;
+	background-color: #EEEEEE;
+	margin: 0 auto;
+	margin-top: 10px;
+	
+}
+/*导航栏*/
+#banner{
+	/*position: absolute;*/
+	height: 100%;
+	width: 16%;
+	/*background-color: pink;*/
+	/*向左浮动*/
+	float: left;
+	margin-right:20px;
+}
+/*设置ul属性*/
+#banner .banner-div{
+	/*width: 100%;*/
+}
+
+#banner .banner-ul{
+	text-align: center;
+	list-style: none;
+	margin-top: 220px;
+	box-shadow: 0px 1px 1px 1px #ccc;
+}
+.banner-ul li{
+	/*设置高度*/
+	height: 51px;
+	line-height: 51px;
+	background-color: #FFFFFF;
+	cursor: pointer;
+}
+.banner-ul li:hover{
+	background-color: #E1E1E1;
+}
+
+.banner-ul img{
+	width: 36px;
+	height: 36px;
+	vertical-align: middle;
+	margin-right: 15px;
+}
+
+/*设置li字体样式*/
+.banner-ul a{
+	font-size: 18px;
+	text-decoration: none;
+	color: darkslategray;
+}
+
+/*版权样式*/
+.copy{
+	width: 240px;
+	position: absolute;
+	left: 40%;
+	bottom:0px;
+	margin: 0 10px;
+	/*background-color: red;*/
+}
+.copy span{
+	text-align: right;
+	display: block;
+	color: gray;
+}
+.copy a{
+	color: gray;
+	text-decoration: none;
+	
+}
+/*商品展示区*/
+#show{
+	/*margin-top: 40px;*/
+	height: 100%;
+	width: 75%;
+	/*background-color: burlywood;*/
+	float: right;
+
+}
+
+#show img{
+	box-shadow: 0px 3px 3px 0px #ccc;
+}
+
+
+/*标题*/
+.show_con {
+	width: 980px;
+	height: 520px;
+	margin-top: 40px;
+	/*background-color: #fff;*/
+}
+.show_title {
+	height: 40px;
+	padding: 20px;
+	/*background-color: red;*/
+}
+.show_title a {
+	text-decoration: none;
+	color: rgb(47, 79, 79);
+	font: 23px/40px "微软雅黑";
+}
+.show_title #s_hr1 {
+	width: 96px;
+	border-top: solid 3px rgb(11, 148, 248);
+	margin-bottom: 5px;
+}
+.show_title #s_hr2 {
+	width: 930px;
+	border: solid 2px lightgray;
+}

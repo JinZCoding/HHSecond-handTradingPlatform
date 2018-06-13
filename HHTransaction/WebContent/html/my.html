@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>我的资料</title>
+		<link rel="stylesheet" type="text/css" href="css/my_css.css" />
+		<style type="text/css">
+			.info #my_tit {
+				width: 200px;
+				height: 40px;
+				position: absolute;
+				right: 30%;
+				top: 80px;
+			}
+			
+			#my_tit span {
+				font: 30px/40px "微软雅黑";
+				color: #EF5350;
+			}
+			
+			.infoImage {
+				width: 300px;
+				height: 250px;
+				margin-left: 40px;
+				margin-top: 40px;
+				float: left;
+				text-align: center;
+			}
+			
+			.infoImage img {
+				width: 200px;
+				height: 200px;
+			}
+			
+			.infoImage a {
+				text-decoration: none;
+				font-size: 18px;
+				font-family: 微软雅黑;
+				color: #EF5350;
+			}
+			
+			.infoImage a:hover {
+				text-decoration: underline;
+			}
+			
+			.infoForm {
+				/*display: table-cell;*/
+				width: 360px;
+				height: 340px;
+				margin: 260px auto 0;
+				padding: 10px;
+				line-height: 40px;
+				/*background-color: yellow;*/
+			}
+			
+			.infoForm label {
+				text-align: left;
+				font-family: 微软雅黑;
+				color: #0bb9f8;
+				font-size: 20px;
+			}
+			
+			.infoForm input {
+				width: 250px;
+				height: 30px;
+			}
+			
+			.infoForm #sub {
+				background-color: #EF5350;
+				color: #FFFFFF;
+				border: none;
+				width: 150px;
+				height: 40px;
+				cursor: pointer;
+				margin-left: 100px;
+				margin-top: 10px;
+			}
+		</style>
+		<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+		<script type="text/javascript">
+			$(function() {
+				//模拟获取后台信息
+				var infoArr = {
+					"img": "img/img_myinfo/myimage.jpg",
+					"name": "陈伟霆"
+				};
+				$("#my_img").find("img").attr("src", infoArr.img);
+				$("#myname").find("span").text(infoArr.name);
+				$(".infoImage").find("img").attr("src", infoArr.img);
+				
+				
+				$(".banner-ul li").on("mouseover",function(){
+					$(this).css("background-color","#EF5350");
+					$(this).find("a").css("color","#fff");
+				});
+				
+				$(".banner-ul li").mouseleave(function(){
+					//判断是否含有current类，如果没有，将样式去掉
+					if(!$(this).hasClass("current")){
+						$(this).css("background-color","#fff");
+						$(this).find("a").css("color","#EF5350");
+					}
+				});
+
+			});
+		</script>
+	</head>
+
+	<body>
+		<div id="header">
+			<div><span>首页</span></div>
+		</div>
+		<div class="content">
+			<div class="banner">
+				<div id="my_img">
+					<a href="#"><img/></a>
+				</div>
+				<div id="myname">
+					<a href="#"><span></span></a>
+				</div>
+				<ul class="banner-ul">
+					<li  class="current">
+						<a href="#">编辑资料</a>
+					</li>
+					<li>
+						<a href="#">我的消息</a>
+					</li>
+					<li><a href="#">购物车</a></li>
+					<li>
+						<a href="#">我买到的</a>
+					</li>
+					<li>
+						<a href="#">我的闲置</a>
+					</li>
+					<li>
+						<a href="put.html">发布闲置</a>
+					</li>
+					<li>
+						<a href="#">个人设置</a>
+					</li>
+				</ul>
+			</div>
+			<div class="info">
+				<div id="my_tit">
+					<span>修改资料</span>
+				</div>
+				<div class="infoImage">
+					<div>
+						<a href="#"><img/></a>
+					</div>
+					<div>
+						<a href="#">修改头像</div>
+					</a>
+				</div>
+				<div class="infoForm">
+					<form action="" method="post">
+						<label>昵称：</label><input type="text" name="stuname" /><br />
+						<label>性别：</label><input type="text" name="stusex" value="" /><br />
+						<label>简介：</label><input type="text" name="stuintro" value="" /><br />
+						<label>Q&thinsp;&thinsp;Q：</label><input type="text" name="QQ" value="" /><br />
+						<label>手机：</label><input type="text" name="tel" value="" /><br />
+						<label>院系：</label><input type="text" name="studep" value="" /><br />
+						<label>密码：</label><input type="password" name="stupwd" value="" /><br />
+						<input type="submit" value="保存" id="sub" /><br />
+					</form>
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

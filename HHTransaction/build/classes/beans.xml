@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:context="http://www.springframework.org/schema/context"
+    xmlns:aop="http://www.springframework.org/schema/aop"
+    xmlns:tx="http://www.springframework.org/schema/tx"
+    xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/aop
+    http://www.springframework.org/schema/aop/spring-aop.xsd
+    http://www.springframework.org/schema/tx
+    http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+<context:component-scan base-package="com.dao,com.service,com.action,com,aspect"/>
+
+
+<!-- 将Hibernate中配置数据库放到Spring当中配置 -->
+     <bean id="dataSource"   class="com.mchange.v2.c3p0.ComboPooledDataSource" >
+        <property name="driverClass" value="com.mysql.jdbc.Driver"/>    
+        <property name="jdbcUrl" value="jdbc:mysql://localhost/hhTransaction?characterEncoding=utf-8"></property>  
+        <property name="user" value="root"></property>  
+        <property name="password" value="123456"></property>  
+        
+    <!--<property name="jdbcUrl" value="jdbc:mysql://bdm26017018.my3w.com/bdm26017018_db?characterEncoding=utf-8"></property>  
+        <property name="user" value="bdm26017018"></property>  
+        <property name="password" value="hhxy112233445566"></property>  
+-->
+     </bean>
+     
+ <!-- 配置SessionFactory创建 -->     
+     <bean id="sessionFactory" class="org.springframework.orm.hibernate5.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"></property>
+        
+       <!-- <property name="configLocations" value="classpath:hibernate.cfg.xml"></property> --> 
+        
+         <!-- 映射文件 -->
+        <property name="mappingDirectoryLocations" value="classpath:com/entity"></property>
+        
+        <property name="hibernateProperties">
+           <props>
+              <prop key="hibernate.dialect">org.hibernate.dialect.MySQL5InnoDBDialect</prop>
+              <prop key="hibernate.hbm2ddl.auto">update</prop>
+              <prop key="hibernate.show_sql">true</prop>
+              <prop key="hibernate.format_sql">true</prop>
+              <prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate5.SpringSessionContext</prop>
+              
+               <prop key="hibernate.c3p0.acquire_increment">1</prop>
+               <prop key="hibernate.c3p0.idle_test_period">0</prop>
+               <prop key="hibernate.c3p0.timeout">0</prop>
+               <prop key="hibernate.c3p0.validate">true</prop>
+            
+              
+           
+           </props>
+          </property>
+     </bean>
+     
+<!-- action
+   <bean id="vipAction" class="com.action.VipAction"></bean>
+     -->
+<!-- service -->
+    
+     
+<!-- userDao -->
+   
+     
+ <!-- 注入hibernateTemplate -->
+     <bean id="hibernateTemplate" class="org.springframework.orm.hibernate5.HibernateTemplate">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+     </bean>
+     
+<!-- 配置事务 -->
+     <bean id="transactionManager" class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"></property>
+     </bean>
+     
+ <!-- 开启事务注解 -->
+      <tx:annotation-driven transaction-manager="transactionManager"/>
+    
+    
+    <!-- aop配置 -->
+    
+<!-- 创建日志切面类对象 -->
+<bean id="myAspect" class="com.aspect.MyAspect"/>  
+        
+<!-- aop配置切入点   <aop:advisor advice-ref="advice" pointcut-ref="myPointCut"/>-->
+    <aop:config>
+      <aop:aspect id="myAspect" ref="myAspect">
+       <aop:pointcut expression="execution(* com.service.*.*(..))" id="allMethod"/>
+         <aop:before method="beforemethod" pointcut-ref="allMethod"/>
+       </aop:aspect>        
+    </aop:config>
+    
+    
+</beans>

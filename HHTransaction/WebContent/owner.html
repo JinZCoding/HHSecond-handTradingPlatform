@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>我买到的</title>
+		<link rel="stylesheet" type="text/css" href="css/my_css.css"/>
+		<style type="text/css">
+			.myown{
+				width: 98%;
+				margin: 0 auto;
+				
+				
+			}
+			.myown #owner_tit {
+				text-align: center;
+				line-height: 40px;
+				font-size: 24px;
+				color: rgb(11, 145, 248);
+				padding-top: 10px;
+			}
+			#my_list{
+				width: 1100px;
+				height: 800px;
+				
+				margin: 20px auto 0;
+			}
+			
+			#my_list .my_goods{
+				width: 400px;
+				height: 100px;
+				background-color: #fff;
+				box-shadow: 0 0 5px #ccc;
+			}
+			.my_goods{
+				padding: 5px 10px;
+				box-sizing: border-box;
+				/*position: relative;*/
+				margin: 0 100px 30px 0;
+				float: left;
+			}
+			
+			.my_goods span{
+				/*display: inline-block;*/
+			}
+			.my_goods p{
+				display: inline-block;
+			}
+			.my_goods button{
+				float: right;
+				margin-left: 10px;
+			}
+			/*.my_goods button:nth-child(2){
+				position: absolute;
+				right: 20px;
+				bottom: 2px;
+			}*/
+		</style>
+		<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="js/my-js.js"></script>
+		<script type="text/javascript">
+			$(function(){
+				
+				
+			});
+		</script>
+	</head>
+	<body>
+		<div id="header">
+			<div><span>首页</span></div>
+		</div>
+		<div class="content">
+			<div class="banner">
+				<div id="my_img"><a href="#"><img/></a></div>
+				<div id="myname"><a href="#"><span></span></a></div>
+				<ul class="banner-ul">
+					<li><a href="#">编辑资料</a></li>
+					<li><a href="#">我的消息</a></li>
+					<li><a href="#">购物车</a></li>
+					<li class="current"><a href="#">我买到的</a></li>
+					<li><a href="#">我的闲置</a></li>
+					<li><a href="#">发布闲置</a></li>
+					<li><a href="#">个人设置</a></li>
+				</ul>
+			</div>
+			<div class="info">
+				<div class="myown">
+					<h2 id="owner_tit">我买到的</h2>
+					
+					<div id="my_list">
+						<div class="my_goods">
+							<span>标题：</span><p>电脑</p><br />
+							<span>商品详情：</span><p>二手电脑</p><br />
+							<span>价格：</span><p>￥1000</p><br />
+							<button>删除订单</button><button>查看详情</button>
+						</div>
+						
+						<div class="my_goods">
+							<span>标题：</span><p>电脑</p><br />
+							<span>商品详情：</span><p>二手电脑</p><br />
+							<span>价格：</span><p>￥1000</p><br />
+							<button>删除订单</button><button>查看详情</button>
+						</div>
+						
+						<div class="my_goods">
+							<span>标题：</span><p>电脑</p><br />
+							<span>商品详情：</span><p>二手电脑</p><br />
+							<span>价格：</span><p>￥1000</p><br />
+							<button>删除订单</button><button>查看详情</button>
+						</div>
+					</div>
+					
+				</div>
+				
+			</div>
+		</div>
+	</body>
+</html>
