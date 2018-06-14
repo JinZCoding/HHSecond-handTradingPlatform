@@ -12,11 +12,11 @@
                </composite-id>
                
               
-               <many-to-one name="cartId" class="com.entity.Cart" insert="false" update="false">
+               <many-to-one name="cartId" class="com.entity.Cart" insert="false" update="false" lazy="false">
                     <column name="cartId"></column>
                </many-to-one>
                
-               <many-to-one name="goodsId" class="com.entity.Goods" insert="false" update="false">
+               <many-to-one name="goodsId" class="com.entity.Goods" insert="false" update="false" lazy="false">
                     <column name="goodsId"></column>
                </many-to-one>
                       

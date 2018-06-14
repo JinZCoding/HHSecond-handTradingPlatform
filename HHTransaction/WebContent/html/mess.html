@@ -18,8 +18,6 @@
 				overflow: hidden;
 			}
 			
-			
-			
 			/*对话框*/
 			.my_message{
 				position: absolute;
@@ -27,8 +25,8 @@
 				width: 85%;
 				height: 100%;
 				box-sizing: border-box;
-				
 			}
+			
 			.my_message .talk{
 				position: relative;
 				width: 90%;
@@ -38,20 +36,45 @@
 				padding: 10px 20px;
 				box-shadow: 0px 0px 6px 0px #A6E7FF;
 				box-sizing: border-box;
-				
 				overflow-y: scroll;
+			}
+			.my_message.tu{
+				background: url(img/messimg/tu.png) no-repeat center center;
 				
+			}
+			/*查看更多*/
+			.my_message .talk .more{
+				position: relative;
+				text-align: center;
+				margin-top: 0;
+			}
+			.my_message .talk .more>a{
+				font-size: 14px;
+				color: skyblue;
 			}
 			
 			.my_message .talk>div{
-				margin-top: 10px;
+				margin-top: 20px;
+				position: relative;
 			}
+			/*时间*/
+			.my_message .talk>div::before{
+				content: attr(data-time);
+			    /*width: auto;*/
+			    position: absolute;
+			    top: -30px;
+			    /*left: 40%;*/
+			    font-size: 12px;
+    			color: gray;
+			}
+			.my_message .talk>div.me::before {
+    			right: 7px;
+    		}
 			/*我说的话*/
 			.my_message .talk .me{
 				
 				line-height: 40px;
 				text-align: right;
-				
 			}
 			.my_message .talk .me .myword{
 				display: inline-block;
@@ -79,7 +102,6 @@
 			.my_message .talk .fri{
 				line-height: 40px;
 				text-align: left;
-				/*background-color: red;*/
 			}
 			.my_message .talk .fri .myword{
 				display: inline-block;
@@ -104,17 +126,12 @@
 			    left: -20px;
 			}
 			
-			
-			
-			
 			/*发送消息栏*/
 			.my_message .my_talk{
 				position: relative;
 				width: 90%;
 				height: 13%;
 				margin: 10px auto;
-				/*border: 1px solid #000;*/
-				
 			}
 			
 			.my_message .my_talk #messTextDiv{
@@ -122,10 +139,8 @@
 				width: 80%;
 				height: 98%;
 				border-radius: 5px;
-				/*margin: 0 0 0 0;*/
    				box-shadow: 0px 2px 2px 2px #A6E7FF;
 				overflow: hidden;
-
 				
 			}
 			.my_message .my_talk #messTextDiv #messText{
@@ -144,8 +159,6 @@
 				bottom: 0;
 				width: 18%;
 				height: 98%;
-				/*margin: auto 10px;*/
-				/*border: 1px solid #000;*/
 				border-radius: 5px;
 				overflow: hidden;
    				box-shadow: 0px 2px 2px 2px #ccc;
@@ -153,8 +166,6 @@
 			}
 			.my_message .my_talk #messBtnDiv #messBtn{
 				position: absolute;
-				/*right: 0;
-				bottom: 0;*/ 
 				width: 100%;
 				height: 100%;
 				box-sizing: border-box;
@@ -169,7 +180,6 @@
 				background-color: #F16A67;
 			}
 			
-			
 			/*左边消息框用户头像等*/
 			/*头像*/
 			.talkPeople{
@@ -183,13 +193,28 @@
 			.talkPeople .t_people{
 				width: 100%;
 				height: 100px;
-				/*background-color: skyblue;*/
 				text-align: center;
-				/*margin-bottom: 10px;*/
 				padding: 10px;
 				cursor: pointer;
 				box-sizing: border-box;
+				position: relative;
 			} 
+			.talkPeople .t_people::after{
+				content: "";
+				width: 0;
+				height: 0;
+			}
+			
+			/*新的样式表示有未读消息*/
+			.talkPeople .t_people.noread::after{
+				content: "";
+				width: 0;
+				height: 0;
+				border: 10px solid red;
+				border-radius: 50%;
+				position: absolute;
+			}
+			
 			.talkPeople .t_people:hover{
 				background-color: skyblue;
 			}
@@ -207,13 +232,16 @@
 			$(function() {
 				
 				var talkArr = [
-					{'name':'admin',
-					'imgsrc':'img/img_myinfo/myimage.jpg',
-					'talkMess':'你好，有什么可以帮助的吗？'
-					},
-					{'name':'admin',
-					'imgsrc':'img/img_myinfo/bg.jpg',
-					'talkMess':'haha？'
+					{
+						'sendId':'00000000001',
+						'receId':'00000000002',//接受方
+						'imgsrc':'img/img_myinfo/myimage.jpg',
+						'talkstatus':1
+					},{
+						'sendId':'00000000001',
+						'receId':'00000000003',
+						'imgsrc':'img/img_myinfo/bg.jpg',
+						'talkstatus':1
 					}
 				];
 				
@@ -222,57 +250,116 @@
 					var imgStr = '<div class="t_people">'+
 							 '<img src="'+talkArr[i].imgsrc+'" class="t_people_img" alt="" />'+
 							 '</div>';
-								 
 					$(".talkPeople").append(imgStr);
+					if(talkArr[i].talkstatus != 0){
+						//添加状态样式
+						$(".t_people:nth-child("+(i+1)+")").addClass("noread");
+					}
 				};
-				//默认显示第一个人消息
 				
-				$(".talkPeople div:first-child").css('background-color','skyblue');
-				var talkMessage = talkArr[0].talkMess;
-				var talkStr = '<div class="fri">'+
-							  '<div class="myword"><span>'+talkMessage+'</span></div>'+
-							  '</div>';
-				$(".talk").append(talkStr);	
+				//默认不显示对话框
+				$(".my_message div").css("display","none");
+				$(".my_message").addClass("tu");
+				
 				
 				//右侧会话框
 				//对话框中的消息
+				var messArr;
 				$(".talkPeople").children(".t_people").click(function(){
+					
+					//去掉消息框红点点
+					var index = $(this).index();
+					talkArr[index].talkstatus = 0;
+					$(this).removeClass("noread");
+					
+					var receiveId = talkArr[index].receId;
+					//console.log(receiveId);
+					
+					//消息记录 0表示对方的话，1表示自己
+					messArr = [
+						{
+							'time':'2018/6/13 16:19',
+							'from':0,
+							'mess':'你好，在吗？'
+						},{
+							'time':'2018/6/13 16:40',
+							'from':1,
+							'mess':'在的'
+						},{
+							'time':'2018/6/13 16:41',
+							'from':1,
+							'mess':'有什么事吗'
+						},{
+							'time':'2018/6/13 16:41',
+							'from':0,
+							'mess':'电脑还可以便宜点吗'
+						},{
+							'time':'2018/6/13 16:45',
+							'from':1,
+							'mess':'可以哦'
+						}
+					];
 					//改变div背景
 					$(this).siblings().css('background-color','');
 					$(this).css('background-color','skyblue');
+					//显示对话框
+//					$(".my_message").css("display","");
+					$(".my_message div").css("display","");
+					$(".my_message").removeClass("tu");
 					//清空对话框
 					$(".talk").empty();
-					
-//					alert($(this).index());
-					var index = $(this).index();
-//					console.log(talkArr[index].talkMess);
-					var talkMessage = talkArr[index].talkMess;
-					var talkStr = '<div class="fri">'+
-								  '<div class="myword"><span>'+talkMessage+'</span></div>'+
+					//添加显示更多
+					var talkStr = '<div class="more">'+
+								  '<a href="#">查看更多</a>'+
 								  '</div>';
-					$(".talk").append(talkStr);			  
+					$(".talk").append(talkStr);	
 					
-				});
-				
-				//发送消息
-				$("#messBtn").click(function(){
-					var textWord = $("#messText").val();
-//					console.log(textWord);
-
-					var newStr = '<div class="me">'+
-								 '<div class="myword"><span>'+textWord+'</span></div>'+
-								 '</div>';
-					
-//					console.log(newStr);
-					if(textWord){
-						$(".talk").append(newStr);
+					//显示对话内容
+					var messLength = messArr.length;
+					for(var i=0;i<messLength;i++){
+						var	talkMessage = messArr[i].mess;
+						var talkDa = messArr[i].time;
+						//from 1表示自己的话，0对方的话
+						if(messArr[i].from){
+							talkStr = '<div class="me" data-time="'+talkDa+'">'+
+					  				  '<div class="myword"><span>'+talkMessage+'</span></div>'+
+					  				  '</div>';
+					  		$(".talk").append(talkStr);	
+						}else{
+							talkStr = '<div class="fri" data-time="'+talkDa+'">'+
+					  				  '<div class="myword"><span>'+talkMessage+'</span></div>'+
+					  				  '</div>';
+					  		$(".talk").append(talkStr);	
+						}
 					}
 					
-					$('.talk').scrollTop( $('.talk')[0].scrollHeight );
 					
-					$("#messText").val("");
-					
-					
+					//发送消息
+					$("#messBtn").click(function(){
+						var textWord = $("#messText").val();
+	//					console.log(textWord);
+						//获取当前时间
+						var now = new Date();
+						var nowdata = now.getFullYear() + "/" +((now.getMonth()+1)<10?"0":"")+(now.getMonth()+1)+"/"+(now.getDate()<10?"0":"")+now.getDate()+
+								   " " + now.getHours() + ":" + now.getMinutes();
+						var newStr = '<div class="me" data-time="'+nowdata+'">'+
+									 '<div class="myword"><span>'+textWord+'</span></div>'+
+									 '</div>';
+						if(textWord){
+							$(".talk").append(newStr);
+							
+							//将所说的话传进messArr中
+							/*messArr.push({
+								'time':nowdata,
+								'from':1,
+								'mess':textWord
+							});
+							console.log(messArr);*/
+						}
+						$('.talk').scrollTop( $('.talk')[0].scrollHeight );
+						
+						$("#messText").val("");
+					});
 				});
 			});
 		</script>
@@ -354,10 +441,10 @@
 				</div>
 				<ul class="banner-ul">
 					<li>
-						<a href="#">编辑资料</a>
+						<a href="my.html">编辑资料</a>
 					</li>
 					<li class="current">
-						<a href="#">我的消息</a>
+						<a href="javascript:;">我的消息</a>
 					</li>
 					<li><a href="#">购物车</a></li>
 					<li>
@@ -379,13 +466,6 @@
 				<div class="outer">
 					<!--消息人-->
 					<div class="talkPeople">
-						<!--<div class="t_people">
-							<img src="img/img_myinfo/myimage.jpg" class="t_people_img" alt="" />
-						</div>-->
-						
-						<!--<div class="t_people">
-							<img src="img/img_myinfo/myimage.jpg" class="t_people_img" alt="" />
-						</div>-->
 						
 					</div>
 					
@@ -393,11 +473,8 @@
 					<div class="my_message">
 						<!--消息框-->
 						<div class="talk">
-							<!--<div class="me">
-								<div class="myword"><span>hello</span></div>
-							</div>-->
-							<!--<div class="fri">
-								<div class="myword"><span>你好，有什么可以帮助的吗？</span></div>
+							<!--<div class="more">
+								<a href="#">查看更多</a>
 							</div>-->
 						
 						</div>

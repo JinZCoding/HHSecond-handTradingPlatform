@@ -1,5 +1,6 @@
 package com.action;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Date;
@@ -30,6 +31,9 @@ public class VipAction extends ActionSupport{
 	String password;
 	String email;
 	String Introduction;
+	File stuheadfile;
+	String stuheadfileFileName;
+	String stuheadfileContentType;
 	
 	
 	@Resource
@@ -75,6 +79,32 @@ public class VipAction extends ActionSupport{
 
 	public void setIntroduction(String introduction) {
 		Introduction = introduction;
+	}
+	
+	
+
+	public File getStuheadfile() {
+		return stuheadfile;
+	}
+
+	public void setStuheadfile(File stuheadfile) {
+		this.stuheadfile = stuheadfile;
+	}
+
+	public String getStuheadfileFileName() {
+		return stuheadfileFileName;
+	}
+
+	public void setStuheadfileFileName(String stuheadfileFileName) {
+		this.stuheadfileFileName = stuheadfileFileName;
+	}
+
+	public String getStuheadfileContentType() {
+		return stuheadfileContentType;
+	}
+
+	public void setStuheadfileContentType(String stuheadfileContentType) {
+		this.stuheadfileContentType = stuheadfileContentType;
 	}
 
 	/**

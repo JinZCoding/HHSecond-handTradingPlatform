@@ -15,6 +15,21 @@ public class Message {
 	private int messageStatus;//消息状态
 	
 	
+	
+	
+	public Message() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	public Message(VipInfo messageSendId, VipInfo messageReceiveId, String messageContent) {
+		super();
+		this.messageSendId = messageSendId;
+		this.messageReceiveId = messageReceiveId;
+		this.messageContent = messageContent;
+		
+	}
+	
 	public int getMessageId() {
 		return messageId;
 	}

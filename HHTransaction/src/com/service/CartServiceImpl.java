@@ -25,6 +25,21 @@ public class CartServiceImpl implements CartService{
 		
 	}
 
+//更新cart
+	@Override
+	public void updateCart(Cart cart) {
+		baseDao.update(cart);
+		
+	}
+
+//获取cart对象
+	@Override
+	public Cart getCart(int cartId) {
+		return baseDao.get(Cart.class, cartId);
+	}
+	
+
+
 
 	
 

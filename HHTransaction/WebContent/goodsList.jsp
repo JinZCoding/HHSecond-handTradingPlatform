@@ -161,6 +161,7 @@
 				
 			   var goodsArr = <%=request.getAttribute("GoodsArr")%>;
 				  var count =<%=request.getAttribute("count")%>;
+				
 				  if(count==0){
 						$(".goodsShow").append("<h1 align='center'>暂且没有相关商品~</h1>");
 					}

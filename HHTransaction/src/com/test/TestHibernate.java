@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dao.BaseDao;
 import com.entity.CartItem;
@@ -21,6 +22,7 @@ import com.entity.Goods;
 import com.entity.Message;
 import com.entity.VipInfo;
 import com.service.CartItemService;
+import com.service.CartService;
 import com.service.ClassifyService;
 import com.service.GoodsService;
 import com.service.MessageService;
@@ -209,8 +211,51 @@ public class TestHibernate {
 			//System.out.println(m.getMessageReceiveId().getVipNickName());
 			 System.out.println(m.getMessageSendId().getVipNickName()+" 给  " +m.getMessageReceiveId().getVipNickName()+ " 发送消息： " +m.getMessageContent());
 		 }
+		 
 		
 	  }
-
+	@Test
+	  public void testMessArr() {
+		
+		 MessageService messervice;		
+		 messervice=(MessageService)ac.getBean("messageService");
+		    
+		// Page page = new Page(1, 5, 8);
+		 VipInfo fvip = service.getCurrentVop(34);
+		 VipInfo tvip = service.getCurrentVop(40);
+		// List<Message> list= messervice.getMessageList(fvip,tvip);
+		
+		 JSONArray temp = messervice.getMessArr(fvip, tvip);
+		System.out.println(temp); 
+		
+	  }
+	
+	@Test
+	  public void testCart() {
+		
+		 CartItemService service;		
+		 service=(CartItemService)ac.getBean("cartItemService");
+		 CartService cartservice;
+		 cartservice=(CartService)ac.getBean("cartService");
+		List<CartItem> list = service.findCartItemList(cartservice.getCart(38));
+		for(CartItem c :list) {
+			System.out.println(c.getGoodsId().getGoodsName());
+		}
+	}
+	
+	@Test
+	  public void testMessListforProple() {
+		
+		 MessageService messervice;		
+		 messervice=(MessageService)ac.getBean("messageService");
+		 
+		// Page page = new Page(1, 5, 8);
+		
+		 VipInfo tvip = service.getCurrentVop(40);
+		  
+		System.out.println(messervice.getMessArrToCurr(tvip));
+		 
+		
+	  }
 
 }

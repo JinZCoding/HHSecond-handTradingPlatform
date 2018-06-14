@@ -21,5 +21,6 @@ public interface GoodsService {
 	//读取图片
 	File getGoodsImg(Goods goods);
 	
+	
 
 }

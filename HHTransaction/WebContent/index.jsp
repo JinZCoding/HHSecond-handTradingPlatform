@@ -159,7 +159,7 @@
 								<a href="put.jsp">我要发布</a>
 							</li>
 							<li id="mess">
-								<a href="mess.jsp">消息</a>
+								<a href="message_getMessageForCurr.action">消息</a>
 							</li>
 							
 								<li id="my">

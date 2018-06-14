@@ -4,36 +4,55 @@
     "http://struts.apache.org/dtds/struts-2.0.dtd">
 
 <struts>
-   <constant name="struts.action.extension" value="action" /> 
-   <constant name="struts.multipart.saveDir" value="/tmp"/> 
+	<constant name="struts.action.extension" value="action" />
+	<constant name="struts.multipart.saveDir" value="/tmp" />
 
-	<package name="action_vip"  extends="struts-default" namespace="/">
-	
-	 <action name="vip_*"  method="{1}" class="vipAction"  >
-	   <result name="success">/index.jsp</result>  
-	   <result name="login">/login.jsp</result> 
-	   <result name="logout">/index.jsp</result>
-	   <result name="index">/index.jsp</result>
-	   <result name="reg">/reg.jsp</result>
-	   <result name="reg_validate">/reg_validate.jsp</result>
-	   <result name="my">/my.jsp</result>
-	 </action>
-	 
+	<!-- ================================vipInfo服务start=========================== -->
+	<package name="action_vip" extends="struts-default" namespace="/">
+
+		<action name="vip_*" method="{1}" class="vipAction">
+			<result name="success">/index.jsp</result>
+			<result name="login">/login.jsp</result>
+			<result name="logout">/index.jsp</result>
+			<result name="index">/index.jsp</result>
+			<result name="reg">/reg.jsp</result>
+			<result name="reg_validate">/reg_validate.jsp</result>
+			<result name="my">/my.jsp</result>
+		</action>
+
 	</package>
-	
-	<package name="action_goods"  extends="struts-default" namespace="/">	
-	 <action name="goods_*"  method="{1}" class="goodsAction" >
-	    <result name="goodsList">/goodsList.jsp</result>
-	    <result name="detail">/detail.jsp</result>
-	    <result name="put">/index.jsp</result>
-	 </action>	 
+	<!-- ================================vipInfo服务end=========================== -->
+
+
+	<!-- ================================goods服务start=========================== -->
+	<package name="action_goods" extends="struts-default"
+		namespace="/">
+		<action name="goods_*" method="{1}" class="goodsAction">
+			<result name="goodsList">/goodsList.jsp</result>
+			<result name="detail">/detail.jsp</result>
+			<result name="put">/index.jsp</result>
+		</action>
 	</package>
-	
-	<package name="action_cartItem"  extends="struts-default"  namespace="/">	
-	 <action name="cartItem_*"  method="{1}" class="cartItemAction" >
-	    
-	 </action>	 
+	<!-- ================================vipInfo服务end=========================== -->
+
+
+	<!-- ================================cart/catrItem服务start=========================== -->
+	<package name="action_cartItem" extends="struts-default"
+		namespace="/">
+		<action name="cartItem_*" method="{1}" class="cartItemAction">
+
+		</action>
 	</package>
-   
+	<!-- ================================cart/cartItem服务end=========================== -->
+
+
+	<!-- ================================message服务start=========================== -->
+	<package name="action_message" extends="struts-default"
+		namespace="/">
+		<action name="message_*" method="{1}" class="messageAction">
+             <result name="mess">/mess.jsp</result>
+		</action>
+	</package>
+	<!-- ================================message服务end=========================== -->
 
 </struts>
