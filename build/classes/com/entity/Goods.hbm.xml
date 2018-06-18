@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC   
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">  
+    
+    <hibernate-mapping  package="com.entity"><!-- 实体类所在的包名 -->
+           <class  name="Goods" table="t_goods">
+             <id  name="goodsId" >
+                  <generator class="native"></generator>
+             </id>
+               <property name="goodsName"></property>
+               <property name="goodsIntroduction" ></property>
+               <property name="goodsPrice"></property>
+               
+               <property name="goodsNum"></property>
+          
+               <property name="goodsStatus"></property>
+               <property name="goodsImage"></property>
+               
+               <many-to-one name="goodsClassify" class="com.entity.Classify" cascade="all">
+                   <column name="classifyId"></column>
+               </many-to-one>
+               
+               <many-to-one name="goodsVipId" class="com.entity.VipInfo" cascade="all">
+                    <column name="vipId"></column>
+               </many-to-one>
+             
+              
+           </class>
+    
+    </hibernate-mapping>

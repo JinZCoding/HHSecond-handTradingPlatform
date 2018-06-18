@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC   
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">  
+    
+    <hibernate-mapping  package="com.entity"><!-- 实体类所在的包名 -->
+           <class  name="Cart" table="t_cart">
+             <id  name="cartId" >
+                  <generator class="foreign">
+                    <param name="property">vipId</param>
+                  </generator>
+             </id>
+               <property name="cartNum"></property>
+               <property name="cartPrice"></property>
+               
+            <one-to-one name="vipId" class="com.entity.VipInfo" constrained="true" cascade="all"></one-to-one>
+             
+              
+           </class>
+    
+    </hibernate-mapping>

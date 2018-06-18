@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" type="text/css" href="css/css.css" />
+		<style type="text/css">
+			#show {
+				margin-right: 50px;
+			}
+			.show_con {
+				width: 980px;
+				height: 520px;
+				margin-top: 40px;
+				/*background-color: #fff;*/
+			}
+			.show_title {
+				height: 40px;
+				padding: 20px;
+				/*background-color: red;*/
+			}
+			.show_title a {
+				text-decoration: none;
+				color: rgb(47, 79, 79);
+				font: 23px/40px "微软雅黑";
+			}
+			.show_title #s_hr1 {
+				width: 96px;
+				border-top: solid 3px rgb(11, 148, 248);
+				margin-bottom: 5px;
+			}
+			.show_title #s_hr2 {
+				width: 930px;
+				border: solid 2px lightgray;
+			}
+			.goodsShow {
+				width: 980px;
+			}
+			.goods {
+				position: relative;
+				width: 280px;
+				height: 380px;
+				margin-top: 20px;
+				margin-left: 20px;
+				padding: 5px;
+				background-color: #FFFFFF;
+				border: solid 1px lightgray;
+				float: left;
+				box-shadow: 0px 1px 1px 1px #ccc;
+			}
+			.goods:hover {
+				box-shadow: 0px 1px 2px 2px #ccc;
+			}
+			.goods .goodsImg {
+				height: 240px;
+				background-color: green;
+				border-bottom: solid 1px lightgray;
+				border-radius: 8px;
+			}
+			.goods .goodsImg img {
+				height: 240px;
+				width: 280px;
+				border-radius: 8px;
+			}
+			.goods .describ {
+				padding: 15px;
+			}
+			.goods .describ .tit {
+				font: 23px "微软雅黑";
+			}
+			.goods .describ .pri {
+				font: 18px "微软雅黑";
+				color: rgb(11, 148, 248);
+			}
+			.goods .describ .inf {
+				font: 16px "微软雅黑";
+			}
+			.goods .contact {
+				position: absolute;
+				right: 8px;
+				bottom: 6px;
+				width: 80px;
+				height: 50px;
+				border-radius: 50px;
+				background-color: rgb(239, 83, 80);
+				/*cursor: pointer;*/
+			}
+			.goods .contact a {
+				text-decoration: none;
+			}
+			.goods .contact a p {
+				font: 18px/50px "微软雅黑";
+				color: #fff;
+				text-align: center;
+			}
+		</style>
+		<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
+		<script type="text/javascript" src="js/js.js"></script>
+
+		<script type="text/javascript">
+			$(window).ready(function() {
+
+				//点击导航中的li，更改show中的内容
+				//更改标题
+				$(".banner-ul li").click(function(){
+//					var index = $(this).index();
+//					consloe.log(index);
+					$("#show_tit").text($(this).find("a").text());
+				});
+								
+				//模拟获取后台数据，显示在show中
+				var goodsArr = [{
+					"img": "img/goods1.png",
+					"name": "惠普电脑",
+					"price": 2000,
+					"info": "毕业，低价出"
+				}, {
+					"img": "img/goods1.png",
+					"name": "联想电脑",
+					"price": 2500,
+					"info": "毕业，低价出"
+				}];
+				//放进盒子中
+				for(var i = 0; i < goodsArr.length; i++) {
+					var str = '<div class="goods">'+
+					'<div class="goodsImg"><img src="' + goodsArr[i].img + '"/></div>'+
+					'<div class="describ"><p class="tit">' + goodsArr[i].name + '</p>'+
+					'<p class="pri">￥ ' + goodsArr[i].price + '</p>'+
+					'<p class="inf">' + goodsArr[i].info + '</p></div>'+
+					'<div class="contact"><a href="detail.html"><p>查看详情</p></a></div></div>';
+					//console.log(str);
+					$(".goodsShow").append(str);
+				}
+			});
+		</script>
+</head>
+	<body>
+		<!--header开始-->
+		<div id="header">
+			<div>
+				<!--右边的-->
+				<div class="right">
+					<!--未登陆之前显示-->
+					<div class="float-right">
+						<span><a href="#">
+							登录/注册</a>
+						</span>
+					</div>
+
+					<nav class="float-right">
+						<ul id="navlist">
+							<li id="put">
+								<a href="#">我要发布</a>
+							</li>
+							<li id="my">
+								<a href="javascript:;">我的</a>
+								<ul id="my-2" style="display: none;">
+									<li>
+										<a href="#" style="color: black;">购物车</a>
+									</li>
+									<li>
+										<a href="#" style="color: black;">订单</a>
+									</li>
+								</ul>
+							</li>
+							<li id="mess">
+								<a href="#">消息</a>
+							</li>
+						</ul>
+					</nav>
+
+				</div>
+				<!--右边结束-->
+				<!--标题logo-->
+				<div id="logo">
+					<h1><a><span style="font-family: '微软雅黑';font-size: 28px;color: #0bb9f8;font-weight: bolder;">黄淮&nbsp;&nbsp;</span><span style="font-family: '微软雅黑';font-size: 28px;font-weight: bolder;">二手工坊</span></a><img src=""/></h1>
+				</div>
+				<!--logo结束-->
+
+				<!--搜索框-->
+				<div id="search">
+					<input type="text" name="search" id="se" value="搜索" />
+				</div>
+				<!--搜索框结束-->
+
+			</div>
+		</div>
+		<!--header结束-->
+
+		<!--内容区-->
+		<div id="content">
+			<!--导航-->
+			<div id="banner">
+				<div class="banner-div">
+					<ul class="banner-ul">
+						<li><img src="img/index.png">
+							<a href="index.html">首&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;页</a>
+						</li>
+						<li><img src="img/digital.png">
+							<a href="javascript:;">电子产品</a>
+						</li>
+						<li><img src="img/ride.png">
+							<a href="javascript:;">服装配饰</a>
+						</li>
+						<li><img src="img/sport.png">
+							<a href="javascript:;">文娱教育</a>
+						</li>
+						<li><img src="img/makeup.png">
+							<a href="javascript:;">美容美化</a>
+						</li>
+						<li><img src="img/book.png">
+							<a href="javascript:;">生活用品</a>
+						</li>
+					</ul>
+				</div>
+				<div class="copy">
+					<span id="copy-span">
+						&copy;黄淮学院
+					</span>
+					<span id="contact">
+						<a href="javascript:;">联系我们</a>
+					</span>
+				</div>
+			</div>
+			<!--商品展示区-->
+			<div id="show">
+				<div class="show_con">
+					<div class="show_title">
+						<a href="#" id="show_tit">电子产品</a>
+						<hr id="s_hr1" />
+						<hr id="s_hr2" />
+					</div>
+
+					<div class="goodsShow">
+						<!--后台数据放进去-->
+						<!--<div class="goods">
+							<div class="goodsImg">
+								<img src=""/>
+							</div>
+							<div class="describ">
+								<p class="tit">惠普</p>
+								<p class="pri">2000</p>
+								<p class="inf">出</p>
+							</div>
+							<div class="contact">
+								<a href="#"><p>联系他</p></a>
+							</div>
+						</div>-->
+					</div>
+
+				</div>
+			</div>
+		</div>
+	</body>
+</html>

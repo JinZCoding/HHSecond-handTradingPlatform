@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			.header{
+				height: 110px;
+				background-color: #FFFFFF;
+				box-shadow: 0px 0px 10px 0px #999999;
+			}
+			.logo{
+				width: 1000px;
+				height: 90px;
+				line-height: 80px;
+				margin: 0 auto;
+				background-color: #FFFFFF;
+			}
+			.logo h1{
+				float: left;
+			}
+			.login{
+				margin-top: 40px;
+				float: right;
+				color: #999999;
+			}
+			.login a{
+				text-decoration: none;
+				color: #E4393C;
+			}
+			.con{
+				height: 500px;
+				background-color: #FFFFFF;
+				margin-top: 8px;
+				margin-bottom: 10px;
+			}
+			.reg{
+				margin: 0 auto;
+				width: 580px;
+				height: 480px;
+				border-bottom: 1px #999999 solid;
+				text-align: center;
+				/*position: relative;*/
+			}
+			.reg h1{
+				font-size: 24px;
+				margin-top: 50px;
+				color: #E4393C;
+			}
+			.reg label{
+				display: inline-block;
+			}
+			.reg input{
+				width: 350px;
+				height: 40px;
+				line-height: 40px;
+				margin-top: 20px;
+				border: 1px #999999 solid;
+				font-size: 20px;
+			
+				
+			}
+			
+			.reg img{
+				width: 26px;
+				height: 26px;
+				vertical-align: middle;
+			}
+			.regsub{
+				background-color: #E4393C;
+				width: 400px;
+				height: 55px;
+				color: #FFFFFF;
+			}
+			
+			
+			.reg .posi{
+				position: relative;
+			}
+			.reg .fixed{
+				position: absolute;
+				left: 480px;
+				
+			}
+		</style>
+	</head>
+	<body>
+		<div class="header">
+			<div class="logo">
+				<h1><a><span style="font-family: '微软雅黑';font-size: 28px;color: #0bb9f8;font-weight: bolder;">黄淮&nbsp;&nbsp;</span><span style="font-family: '微软雅黑';font-size: 28px;font-weight: bolder;">二手工坊</span></a><img src=""/></h1>
+				<p class="login"><span >已有账号？</span><a href="login.html" >请登陆></a></p>
+			</div>
+		</div>
+		<div class="con">
+			<div class="reg">
+				<h1>欢迎注册</h1>
+				<!--<label>用&nbsp;户&nbsp;名 ：</label><img src="img/reg1.jpg"><input type="text" name=""><br>-->
+				<label>昵&emsp;&emsp;称：</label><img src="img/reg3.jpg"><input type="text" name=""><br>
+				<!--<label>学&emsp;&emsp;号：</label><img src="img/reg1.jpg"><input type="text" name=""><br>-->
+				<!--邮箱-->
+				<label class="posi">邮&emsp;&emsp;箱：<span class="fixed">test</span></label><img src="img/reg1.jpg"><input type="text" name=""><br>
+				
+				<label>密&emsp;&emsp;码：</label><img src="img/reg2.jpg"><input type="text" name=""><br>
+				<label class="posi">确认密码：<span class="fixed">test</span></label><img src="img/reg2.jpg"><input type="text" name=""><br>
+				<input type="submit" name="" class="regsub" value="注册">
+			</div>
+		</div>
+		<center>Copyright &copy; 2018 黄淮学院 版权所有</center>
+		
+	</body>
+</html>

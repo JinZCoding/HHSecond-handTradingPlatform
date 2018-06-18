@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC   
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"  
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">  
+    
+    <hibernate-mapping  package="com.entity"><!-- 实体类所在的包名 -->
+           <class  name="Order" table="t_order">
+             <id  name="orderId" >
+                  <generator class="native"></generator>
+             </id>
+               <property name="orderDate" type="timestamp"></property>
+               <property name="orderAddress" ></property>
+               <property name="orderPrice" type="float"></property>
+               
+               <many-to-one name="orderBuyId" class="com.entity.VipInfo" >
+                    <column name="vipBuyId"></column>
+               </many-to-one>
+               
+               <many-to-one name="orderSellId" class="com.entity.VipInfo" >
+                    <column name="vipSellId"></column>
+               </many-to-one>
+            
+             
+              
+           </class>
+    
+    </hibernate-mapping>
