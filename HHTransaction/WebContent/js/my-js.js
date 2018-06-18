@@ -1,12 +1,13 @@
 $(function() {
 	//模拟获取后台信息，用户的个人信息
-	var infoArr = {
-		"img": "img/img_myinfo/myimage.jpg",
-		"name": "陈伟霆"
-	};
-	$("#my_img").find("img").attr("src", infoArr.img);
-	$("#myname").find("span").text(infoArr.name);
-	$(".infoImage").find("img").attr("src", infoArr.img);
+
+	var imagsrc = $("#my_img").find("img").attr("data-type");
+	//alert(imagsrc);
+	var json = eval('(' + imagsrc + ')');
+	//alert(json.img);
+	$("#my_img").find("img").attr("src",json.img);
+	
+	
 
 	//
 	$(".banner-ul li").on("mouseover", function() {

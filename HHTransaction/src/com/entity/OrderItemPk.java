@@ -9,13 +9,25 @@ public class OrderItemPk implements Serializable{
 	//private Goods goodsId;
 	//private Order orderId;
 	
+	public OrderItemPk() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 	
 
 	
+
+	public OrderItemPk(int goodsId, int orderId) {
+		super();
+		this.goodsId = goodsId;
+		this.orderId = orderId;
+	}
+
 
 	public int getGoodsId() {
 		return goodsId;
 	}
+
 	public void setGoodsId(int goodsId) {
 		this.goodsId = goodsId;
 	}

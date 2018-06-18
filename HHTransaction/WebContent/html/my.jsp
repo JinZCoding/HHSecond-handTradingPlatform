@@ -22,40 +22,37 @@
 				color: #EF5350;
 			}
 			
-			
-			.infoForm {
-				/*display: table-cell;*/
-				width: 800px;
-				height: 340px;
-				margin: 160px auto 0;
-				padding: 10px;
-				line-height: 40px;
-				/*background-color: yellow;*/
-			}
-			/*头像*/
-			.infoForm .infoImage {
-				width: 250px;
-				height: 300px;
-				margin: 40px 40px;
+			.infoImage {
+				width: 300px;
+				height: 250px;
+				margin-left: 40px;
+				margin-top: 40px;
 				float: left;
 				text-align: center;
 				font-size: 18px;
 				font-family: 微软雅黑;
 				color: #EF5350;
 			}
-			
-			.infoForm .infoImage>div{
-				width: 250px;
-				height: 200px;
-			}
-			
-			.infoForm .infoImage img {
+			.infoImage>div{
 				width: 200px;
 				height: 200px;
 			}
-			.infoForm .infoImage input{
+			
+			.infoImage img {
 				width: 200px;
+				height: 200px;
 			}
+			
+			.infoForm {
+				/*display: table-cell;*/
+				width: 360px;
+				height: 340px;
+				margin: 260px auto 0;
+				padding: 10px;
+				line-height: 40px;
+				/*background-color: yellow;*/
+			}
+			
 			.infoForm label {
 				text-align: left;
 				font-family: 微软雅黑;
@@ -103,11 +100,11 @@
 			//$("#myname").find("span").text();
 			$(".infoImage").find("img").attr("src", infoArr.img);
 			//$(".infoForm").find("input").eq(0).attr("placeholder",infoArr.name);
-			$(".infoForm").find("input").eq(2).attr("value",infoArr.ssex);
-			$(".infoForm").find("input").eq(3).attr("value",infoArr.info);
-			$(".infoForm").find("input").eq(4).attr("value",infoArr.myqq);
-			$(".infoForm").find("input").eq(5).attr("value",infoArr.tel);
-			$(".infoForm").find("input").eq(6).attr("value",infoArr.dep);
+			$(".infoForm").find("input").eq(1).attr("placeholder",infoArr.ssex);
+			$(".infoForm").find("input").eq(2).attr("placeholder",infoArr.info);
+			$(".infoForm").find("input").eq(3).attr("placeholder",infoArr.myqq);
+			$(".infoForm").find("input").eq(4).attr("placeholder",infoArr.tel);
+			$(".infoForm").find("input").eq(5).attr("placeholder",infoArr.dep);
 			//$(".infoForm").find("input").eq(6).attr("placeholder",infoArr.psw);
 			
 			
@@ -133,7 +130,6 @@
 					//$('#filed')获取的是jQuery对象，.get(0)转为原生对象;
 					//这边默认只能选一个，但是存放形式仍然是数组，所以取第一个元素使用[0];
 					var file = $('#stuheadfile').get(0).files[0];
-					
 					//创建用来读取此文件的对象
 					var reader = new FileReader();
 					//使用该对象读取file文件
@@ -150,7 +146,7 @@
 
 		});
 		
-		//没用
+		
 		function editInfo() {
 			
 			var ssex = $("#stusex").val();
@@ -173,13 +169,12 @@
 				};
 			//将info这个json转换成字符串传给后台
 			var Introduction = JSON.stringify(info);
-			alert(Introduction);
-			var file = $('#stuheadfile').get(0).files[0];
-			alert(file);
+			//alert(Introduction);
+			
 			$.ajax({
 				  type:"post",
 				  url:"HHTransaction/vip_editInfo.action",
-				  data:"Introduction="+ Introduction +"&stuheadfile="+file,
+				  data:"Introduction="+Introduction,
 				  dataType:"json",
 				  success:function(data){			  
 					  alert("修改成功！");				  
@@ -190,7 +185,6 @@
 					  					
 				  }
 			});
-		
 		}
 		
 		</script>
@@ -213,14 +207,14 @@
 								<a href="put.jsp">我要发布</a>
 							</li>
 							<li id="mess">
-								<a href="message_getMessageForCurr.action">消息</a>
+								<a href="mess.jsp">消息</a>
 							</li>
 							
 								<li id="my">
 								<a href="vip_getVipIntroduction.action">${current_user.vipNickName}</a>
 								<ul id="my-2" style="display: none;">
 									<li>
-										<a href="cartItem_getCartItem.action" style="color: black;">购物车</a>
+										<a href="#" style="color: black;">购物车</a>
 									</li>
 									<li>
 										<a href="#" style="color: black;">订单</a>
@@ -275,9 +269,9 @@
 						<a href="vip_getVipIntroduction.action">编辑资料</a>
 					</li>
 					<li>
-						<a href="message_getMessageForCurr.action">我的消息</a>
+						<a href="#">我的消息</a>
 					</li>
-					<li><a href="cartItem_getCartItem.action">购物车</a></li>
+					<li><a href="#">购物车</a></li>
 					<li>
 						<a href="#">我买到的</a>
 					</li>
@@ -296,20 +290,16 @@
 				<div id="my_tit">
 					<span>修改资料</span>
 				</div>
-				
+				<div class="infoImage">
+					<div>
+						<img src="img/img_myinfo/myimage.jpg" id="my_headimg" width="200px" height="200px" />
+					</div>
+					
+					<label>修改头像</label><input type="file" name="stuheadfile" id="stuheadfile" value="" accept="image/*" form="myInfoForm"/>
+					
+				</div>
 				<div class="infoForm">
-					<form action="vip_editInfo.action" method="post" id="myInfoForm" enctype="multipart/form-data">
-						<!--头像区-->
-						<div class="infoImage">
-							<div>
-								<img src="img/img_myinfo/myimage.jpg" id="my_headimg" width="200px" height="200px" />
-							</div>
-							
-							<label>修改头像</label>
-							
-							<input type="file" name="stuheadfile" id="stuheadfile" value="" accept="image/*" />
-							
-						</div>
+					<form action="" method="post" id="myInfoForm" enctype="multipart/form-data">
 						<label>昵称：</label><input type="text" name="stuname" id="stuname" value="${current_user.vipNickName }" onblur="validateNickName()"/><br />
 						<label>性别：</label><input type="text" name="stusex" value="" id="stusex"/><br />
 						<label>简介：</label><input type="text" name="stuintro" value="" id="stuintro" /><br />
@@ -317,15 +307,13 @@
 						<label>手机：</label><input type="text" name="tel" value=""  id="tel"/><br />
 						<label>院系：</label><input type="text" name="studep" value="" id="studep"/><br />
 						<label>密码：</label><input type="password" name="stupwd" value="" id="stupwd" /><br />
-						<input type="submit" value="保存" id="sub" /><br />
+						<input type="submit" value="保存" id="sub" onclick="editInfo()" /><br />
 					</form>
 				</div>
 			</div>  
 		</div>
 	</body>
 	<script type="text/javascript">
-	
-
 	function validateNickName() {
 		var nickname = $("#stuname").val();
 	

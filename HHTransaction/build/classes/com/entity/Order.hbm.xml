@@ -8,8 +8,8 @@
              <id  name="orderId" >
                   <generator class="native"></generator>
              </id>
-               <property name="orderDate" type="date"></property>
-               <property name="orderAddress" type="text"></property>
+               <property name="orderDate" type="timestamp"></property>
+               <property name="orderAddress" ></property>
                <property name="orderPrice" type="float"></property>
                
                <many-to-one name="orderBuyId" class="com.entity.VipInfo" >

@@ -148,7 +148,7 @@
 								<a href="put.jsp">我要发布</a>
 							</li>
 							<li id="mess">
-								<a href="mess.jsp">消息</a>
+								<a href="message_getMessageForCurr.action">消息</a>
 							</li>
 							
 								<li id="my">
@@ -201,20 +201,20 @@
 		<!--header结束-->
 		<div class="content">
 			<div class="banner">
-				<div id="my_img">
-					<a href="vip_getVipIntroduction.action"><img/></a>
-				</div>
-				<div id="myname">
+				    <div id="my_img">
+					<a href="vip_getVipIntroduction.action"><img data-type='${current_user.vipIntroduction}' /></a>
+				    </div>
+				    <div id="myname">
 					<a href="#"><span>${current_user.vipNickName }</span></a>
-				</div>
+				    </div>
 				<ul class="banner-ul">
 					<li>
 						<a href="vip_getVipIntroduction.action">编辑资料</a>
 					</li>
 					<li>
-						<a href="#">我的消息</a>
+						<a href="message_getMessageForCurr.action">我的消息</a>
 					</li>
-					<li><a href="#">购物车</a></li>
+					<li><a href="cartItem_getCartItem.action">购物车</a></li>
 					<li>
 						<a href="#">我买到的</a>
 					</li>

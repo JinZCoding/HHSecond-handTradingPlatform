@@ -17,9 +17,12 @@ public interface MessageService {
 
 
 	void insertMessage(Message message);
+	
 	//获取所有聊天消息发送者
 	List<Message> getMessageToCurr(VipInfo toId);
 	//将消息列表封装成JsonArr
 	JSONArray getMessArrToCurr(VipInfo toId);
+	
+	
 
 }

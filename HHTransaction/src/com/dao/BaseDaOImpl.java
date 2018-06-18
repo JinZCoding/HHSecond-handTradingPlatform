@@ -3,7 +3,7 @@ package com.dao;
 import java.io.Serializable;
 import java.util.List;
 
-
+import org.hibernate.SQLQuery;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
@@ -31,6 +31,20 @@ public class BaseDaOImpl<T> implements BaseDao<T> {
 		return sessionFactory.getCurrentSession();
 	}
 
+	//原生sql
+	 public List queryBySql(String sql) {    
+	        List<Object[]> list = getCurrentSession().createSQLQuery(sql).list();    
+	        return list;    
+	    }    
+	        
+	    public int excuteBySql(String sql)    
+	    {    
+	        int result ;    
+	        SQLQuery query = this.getCurrentSession().createSQLQuery(sql);    
+	        result = query.executeUpdate();    
+	        return result;    
+	    }    
+	
 	public Serializable save(T o) {
 		return this.getCurrentSession().save(o);
 	}

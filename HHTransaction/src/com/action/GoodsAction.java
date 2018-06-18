@@ -170,6 +170,8 @@ public class GoodsAction extends ActionSupport {
 		HttpServletRequest request = ServletActionContext.getRequest();
 		Goods goods = goodService.findGoods(goodsId);
 		request.setAttribute("goods", goods);
+		//获取该用户的id
+		//int id = goods.getGoodsVipId().getVipId();
 		return "detail";
 	}
 	

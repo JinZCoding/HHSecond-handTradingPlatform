@@ -14,6 +14,19 @@ public interface BaseDao<T> {
 	 * @param o
 	 * @return
 	 */
+	
+	
+	/**
+	 * 原生sql
+	 * @param o
+	 * @return
+	 */
+	
+public List queryBySql(String sql) ;  
+	        
+public int excuteBySql(String sql);
+	    
+	    
   public Serializable save(T o);
   /**
    * 删除一个对象

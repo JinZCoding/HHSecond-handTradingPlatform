@@ -6,6 +6,7 @@
 <struts>
 	<constant name="struts.action.extension" value="action" />
 	<constant name="struts.multipart.saveDir" value="/tmp" />
+    
 
 	<!-- ================================vipInfo服务start=========================== -->
 	<package name="action_vip" extends="struts-default" namespace="/">
@@ -30,7 +31,7 @@
 		<action name="goods_*" method="{1}" class="goodsAction">
 			<result name="goodsList">/goodsList.jsp</result>
 			<result name="detail">/detail.jsp</result>
-			<result name="put">/index.jsp</result>
+			<result name="put">/put.jsp</result>
 		</action>
 	</package>
 	<!-- ================================vipInfo服务end=========================== -->
@@ -40,7 +41,7 @@
 	<package name="action_cartItem" extends="struts-default"
 		namespace="/">
 		<action name="cartItem_*" method="{1}" class="cartItemAction">
-
+            <result name="cart">/cart.jsp</result>
 		</action>
 	</package>
 	<!-- ================================cart/cartItem服务end=========================== -->

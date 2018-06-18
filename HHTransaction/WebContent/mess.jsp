@@ -1,3 +1,4 @@
+<%@page import="com.alibaba.fastjson.JSONObject"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@taglib prefix="s" uri="/struts-tags" %>
@@ -231,9 +232,10 @@
 		</style>
 		<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
 		<script type="text/javascript" src="js/js.js"></script>
-		<script type="text/javascript" src="js/my-js.js"></script>
+	    <script type="text/javascript" src="js/my-js.js"></script>
 		<script type="text/javascript">
 			$(function() {
+				
 				
 				var talkArr = [
 					{
@@ -284,7 +286,7 @@
 					//var receiveId = talkArr[index].receId;
 					var fromId = talkArr[index].sendId;
 					//console.log(receiveId);
-									
+								
 					//消息记录 0表示对方的话，1表示自己
 								
 					messArr = [
@@ -364,11 +366,14 @@
 								  '</div>';
 					$(".talk").append(talkStr);	
 					
-					
-					
+				
+				   
 					//发送消息
+					$("#messBtn").unbind("click");
 					$("#messBtn").click(function(){
+						
 						var textWord = $("#messText").val();
+						
 	//					console.log(textWord);
 						//获取当前时间
 						var now = new Date();
@@ -379,8 +384,10 @@
 									 '</div>';
 						if(textWord){
 							$(".talk").append(newStr);
+								
+						
 							
-							//添加至聊天
+						//添加至聊天
 						 $.ajax({
 							    type:"post",
 								url:"HHTransaction/message_sendMessage.action",
@@ -388,13 +395,15 @@
 								//dataType:"json",
 			                   success:function(data){	
 			                	  // alert(textWord);
-			               	      //alert("加购成功~");
+			               	     
 			                    },
 			                   error:function(data){
 				                  alert("发送失败~");				
 			                      }
 			
-		                    });		
+		                    });	
+							
+						// window.location = "HHTransaction/message_sendMessage.action?fromId="+fromId+"&messageContent="+textWord;
 							//将所说的话传进messArr中
 							/*messArr.push({
 								'time':nowdata,
@@ -402,10 +411,12 @@
 								'mess':textWord
 							});
 							console.log(messArr);*/
+							
 						}
 						$('.talk').scrollTop( $('.talk')[0].scrollHeight );
 						
 						$("#messText").val("");
+						
 					});
 				});
 			});
@@ -429,7 +440,7 @@
 								<a href="put.jsp">我要发布</a>
 							</li>
 							<li id="mess">
-								<a href="#">消息</a>
+								<a href="message_getMessageForCurr.action">消息</a>
 							</li>
 							
 								<li id="my">
@@ -480,18 +491,18 @@
 		
 		<div class="content">
 			<div class="banner">
-				<div id="my_img">
-					<a href="#"><img/></a>
-				</div>
-				<div id="myname">
-					<a href="#"><span></span></a>
-				</div>
+					<div id="my_img">
+					<a href="vip_getVipIntroduction.action"><img data-type='${current_user.vipIntroduction}' /></a>
+				    </div>
+				    <div id="myname">
+					<a href="#"><span>${current_user.vipNickName }</span></a>
+				    </div>
 				<ul class="banner-ul">
 					<li>
-						<a href="my.html">编辑资料</a>
+						<a href="vip_getVipIntroduction.action">编辑资料</a>
 					</li>
 					<li class="current">
-						<a href="javascript:;">我的消息</a>
+						<a href="message_getMessageForCurr.action">我的消息</a>
 					</li>
 					<li><a href="#">购物车</a></li>
 					<li>
@@ -501,7 +512,7 @@
 						<a href="#">我的闲置</a>
 					</li>
 					<li>
-						<a href="put.html">发布闲置</a>
+						<a href="put.jsp">发布闲置</a>
 					</li>
 					<li>
 						<a href="#">个人设置</a>

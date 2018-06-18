@@ -3,6 +3,7 @@ package com.test;
 import static org.junit.Assert.*;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dao.BaseDao;
@@ -20,12 +22,14 @@ import com.entity.CartItem;
 import com.entity.Classify;
 import com.entity.Goods;
 import com.entity.Message;
+import com.entity.Order;
 import com.entity.VipInfo;
 import com.service.CartItemService;
 import com.service.CartService;
 import com.service.ClassifyService;
 import com.service.GoodsService;
 import com.service.MessageService;
+import com.service.OrderService;
 import com.service.VipInfoService;
 import com.utils.HibernateSessionFactory;
 import com.utils.Page;
@@ -221,12 +225,16 @@ public class TestHibernate {
 		 messervice=(MessageService)ac.getBean("messageService");
 		    
 		// Page page = new Page(1, 5, 8);
-		 VipInfo fvip = service.getCurrentVop(34);
-		 VipInfo tvip = service.getCurrentVop(40);
+		 VipInfo fvip = service.getCurrentVop(39);
+		 //VipInfo tvip = service.getCurrentVop(40);
 		// List<Message> list= messervice.getMessageList(fvip,tvip);
 		
-		 JSONArray temp = messervice.getMessArr(fvip, tvip);
-		System.out.println(temp); 
+		// JSONArray temp = messervice.getMessArr(fvip, tvip);
+		//System.out.println(temp);
+		 List<Message> list = messervice.getMessageToCurr(fvip);
+		 for(Message m :list) {
+			 System.out.println(m.getMessageContent());
+		 }
 		
 	  }
 	
@@ -237,10 +245,12 @@ public class TestHibernate {
 		 service=(CartItemService)ac.getBean("cartItemService");
 		 CartService cartservice;
 		 cartservice=(CartService)ac.getBean("cartService");
-		List<CartItem> list = service.findCartItemList(cartservice.getCart(38));
-		for(CartItem c :list) {
-			System.out.println(c.getGoodsId().getGoodsName());
-		}
+//		List<CartItem> list = service.findCartItemList(cartservice.getCart(38));
+//		for(CartItem c :list) {
+//			System.out.println(c.getGoodsId().getGoodsName());
+//		}
+		//System.out.println(service.getShopArr(cartservice.getCart(38)));
+		System.out.println(service.getCountCartItem(cartservice.getCart(38)));
 	}
 	
 	@Test
@@ -257,5 +267,32 @@ public class TestHibernate {
 		 
 		
 	  }
-
+   @Test
+   public void testDateToInt() {
+	   SimpleDateFormat sf = new SimpleDateFormat("yyMMddHHmmss");
+		String nowDate=sf.format(new Date()).toString();
+		Date date  = new  Date();
+		System.out.println(date.getTime());
+   }
+   
+   @Test
+   public void testGetOrdeId() {
+	   //添加一个订单信息
+	  OrderService orderservice;		
+	  orderservice=(OrderService)ac.getBean("orderService");
+	  Order order = new Order();
+	  order.setOrderAddress("test");
+	  
+	  int[] goodsArr= {56,57,58,59,60};
+	  orderservice.insertOrder(order,goodsArr);
+	  
+   }
+   
+   @Test
+   public void testImg() {
+	   VipInfo current = service.getCurrentVop(34);
+	   String str = current.getVipIntroduction();
+	   JSONObject json = new JSONObject().parseObject(str);
+	   System.out.println(json.get("img"));
+   }
 }

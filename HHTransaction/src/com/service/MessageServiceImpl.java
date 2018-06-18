@@ -85,17 +85,18 @@ public class MessageServiceImpl implements MessageService {
 //获取说的最新消息的每个对象group by messageSendId不能让最新聊天的人置顶
 	@Override
 	public List<Message> getMessageToCurr(VipInfo toId) {
-		String hql="from Message  where messageReceiveId=?  order by messageDate desc";
-	   List<Message> list = baseDao.find(hql, new Object[] {toId});
-	   int sendId[] = new int[300];
-	   List<Message> messList  = new ArrayList<Message>();
-	   for(Message m : list) {
-		   if(sendId[m.getMessageSendId().getVipId()]==0) {
-			   messList.add(m);
-			   sendId[m.getMessageSendId().getVipId()]=1;
-		   }
-	   }
-		return messList;
+		String hql="from Message  where messageReceiveId=? group by messageSendId order by messageDate desc";
+//       List<Message> list = baseDao.find(hql, new Object[] {toId,toId});
+//	   int sendId[] = new int[300];
+//	   List<Message> messList  = new ArrayList<Message>();
+//	   for(Message m : list) {
+//		   if(sendId[m.getMessageSendId().getVipId()]==0) {
+//			   messList.add(m);
+//			   sendId[m.getMessageSendId().getVipId()]=1;
+//		   }
+//	   }
+//		return messList;
+		return baseDao.find(hql, new Object[] {toId});
 	}
 
 
@@ -113,7 +114,9 @@ public class MessageServiceImpl implements MessageService {
 			
 			talk.put("talkstatus", m.getMessageStatus());
 			talkArr.add(talk);
+			
 		}
+		
 		return talkArr;
 	}
 	

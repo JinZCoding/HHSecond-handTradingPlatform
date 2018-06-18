@@ -3,19 +3,20 @@ package com.action;
 import java.io.File;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import org.apache.catalina.core.ApplicationContext;
+
 import org.apache.struts2.ServletActionContext;
 import org.springframework.stereotype.Controller;
 
-import com.alibaba.fastjson.JSON;
+
 import com.alibaba.fastjson.JSONObject;
 import com.entity.Cart;
 import com.entity.VipInfo;
@@ -23,6 +24,7 @@ import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.service.CartService;
 import com.service.VipInfoService;
+import com.utils.ImageFile;
 import com.utils.SendEmail;
 
 @Controller("vipAction")
@@ -30,8 +32,13 @@ public class VipAction extends ActionSupport{
 	String nickname;
 	String password;
 	String email;
-	String Introduction;
-	File stuheadfile;
+	String stusex;
+	String stuintro;
+	String QQ;
+	String tel;
+	String studep;
+	//String Introduction;
+	File stuheadfile;//
 	String stuheadfileFileName;
 	String stuheadfileContentType;
 	
@@ -69,19 +76,45 @@ public class VipAction extends ActionSupport{
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-
-
-
-	public String getIntroduction() {
-		return Introduction;
+	public String getStusex() {
+		return stusex;
 	}
 
-	public void setIntroduction(String introduction) {
-		Introduction = introduction;
+	public void setStusex(String stusex) {
+		this.stusex = stusex;
 	}
-	
-	
+
+	public String getStuintro() {
+		return stuintro;
+	}
+
+	public void setStuintro(String stuintro) {
+		this.stuintro = stuintro;
+	}
+
+	public String getQQ() {
+		return QQ;
+	}
+
+	public void setQQ(String qQ) {
+		QQ = qQ;
+	}
+
+	public String getTel() {
+		return tel;
+	}
+
+	public void setTel(String tel) {
+		this.tel = tel;
+	}
+
+	public String getStudep() {
+		return studep;
+	}
+
+	public void setStudep(String studep) {
+		this.studep = studep;
+	}
 
 	public File getStuheadfile() {
 		return stuheadfile;
@@ -195,28 +228,45 @@ public class VipAction extends ActionSupport{
 	 */
 	public String editInfo() throws IOException {
 	  Map<String,Object> session = ActionContext.getContext().getSession();
+	  HttpServletRequest request = ServletActionContext.getRequest();
 	  HttpServletResponse response = ServletActionContext.getResponse();
 	  response.setCharacterEncoding("utf-8");
 	  VipInfo current_user=  (VipInfo) session.get("current_user");
-	  //System.out.println(Introduction);	  	  
+	 	  	  
+	  JSONObject Introduction = new  JSONObject();
+	  Introduction.put("ssex", stusex);
+	  Introduction.put("info",stuintro);
+	  Introduction.put("myqq", QQ);
+	  Introduction.put("tel", tel);
+	  Introduction.put("dep", studep);
+	  //处理图片
+	  String img="img/img_myinfo/myimage.jpg";
 	  
-	  
-	  
-	  JSONObject infoArr = new JSONObject().parseObject(Introduction);
+	 //将图片保存到本地内的位置文件名命名方式："G:/workspace/HHTransaction/WebContent/img/goods/";
+	  String filePath =request.getSession().getServletContext().getRealPath("/")+"img/head_img/";
+	 //图片的命名方式=时间+文件名
+	  SimpleDateFormat sf = new SimpleDateFormat("yyyyMMddHHmmss");
+	  String nowDate = sf.format(new Date()).toString();
+	  stuheadfileFileName=nowDate+stuheadfileFileName;	 
+	  //如果上传头像
+	  if(stuheadfile!=null) {
+		  //将图片保存
+		  ImageFile imgFile= new ImageFile();
+		 if( imgFile.SetFilePath(stuheadfile, stuheadfileFileName, filePath)==true) {
+			 img = "img/head_img/"+stuheadfileFileName;
+			 System.out.println("上传头像ok");
+		 }
+		
+	  }
+ 
 	  //头像初始化
-	  infoArr.put("img","img/img_myinfo/myimage.jpg");
+	  Introduction.put("img",img);
+	  
 	  //将信息存入数据库
-	  current_user.setVipIntroduction(infoArr.toJSONString());
+	  current_user.setVipIntroduction(Introduction.toJSONString());
 	  vipInfoService.updateVipInfo(current_user);
-  
-	  PrintWriter out = response.getWriter();
-	  out.print(infoArr);
-	  out.flush();
-	  out.close();
-	
-	  System.out.println(infoArr);
-	  System.out.println(infoArr.get("ssex"));
-		return null;
+ 
+		return "success";
 	}
 	
 	

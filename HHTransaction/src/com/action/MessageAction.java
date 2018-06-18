@@ -74,6 +74,7 @@ public class MessageAction extends ActionSupport{
 		
 		return "mess";
 	}
+	
 	//获取聊天记录
 	public String  getMessageRecord() throws IOException {
 		Map<String,Object> session = ActionContext.getContext().getSession();
@@ -91,6 +92,7 @@ public class MessageAction extends ActionSupport{
 		return null;
 	}
 	 
+	//发送消息
 	public String sendMessage() {
 		Map<String,Object> session = ActionContext.getContext().getSession();
 		VipInfo current_user =(VipInfo) session.get("current_user");
@@ -100,10 +102,12 @@ public class MessageAction extends ActionSupport{
 
 		//构造方法（发送方，接收方，内容，状态（0是已读，1是未读））
 		Message message = new Message(current_user,vipInfoService.getCurrentVop(fromId),messageContent);
+		System.out.println("发送给"+fromId);
 		message.setMessageDate(new Date());
 		messageService.insertMessage(message);
 		
 		return null;
 	}
 	
+	//public String 
 }

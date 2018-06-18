@@ -93,17 +93,281 @@
 				}
 		</style>
 		
+		<style type="text/css">
+			.cover {
+				z-index: 100;
+				display: none;
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				background-color: rgba(0, 0, 0, 0.2);
+			}
+			/*对话框*/
+			.my_message {
+				/*position: absolute;*/
+				/*right: 0;*/
+				width: 500px;
+				height: 500px;
+				background-color: white;
+				box-sizing: border-box;
+				margin: 50px auto;
+				/*padding-top: 10px;*/
+			}
+			.my_message .close{
+				position: relative;
+				/*background-color: wheat;*/
+				height: 5%;
+			}
+			.close span {
+				text-align: center;
+			    display: inline-block;
+			    width: 25px;
+			    /*background-color: red;*/
+			    float: right;
+			    cursor: pointer;
+			}
+			
+			.my_message .talk {
+				position: relative;
+				width: 90%;
+				height: 75%;
+				margin: 10px auto;
+				border: 1px solid #A6E7FF;
+				padding: 10px 20px;
+				box-shadow: 0px 0px 6px 0px #A6E7FF;
+				box-sizing: border-box;
+				overflow-y: scroll;
+			}
+			
+			.my_message.tu {
+				background: url(img/messimg/tu.png) no-repeat center center;
+			}
+			/*查看更多*/
+			
+			.my_message .talk .more {
+				position: relative;
+				text-align: center;
+				margin-top: 0;
+			}
+			
+			.my_message .talk .more>a {
+				font-size: 14px;
+				color: skyblue;
+			}
+			
+			.my_message .talk>div {
+				margin-top: 20px;
+				position: relative;
+			}
+			/*时间*/
+			
+			.my_message .talk>div::before {
+				content: attr(data-time);
+				/*width: auto;*/
+				position: absolute;
+				top: -30px;
+				/*left: 40%;*/
+				font-size: 12px;
+				color: gray;
+			}
+			
+			.my_message .talk>div.me::before {
+				right: 7px;
+			}
+			/*我说的话*/
+			
+			.my_message .talk .me {
+				line-height: 40px;
+				text-align: right;
+			}
+			
+			.my_message .talk .me .myword {
+				display: inline-block;
+				background-color: #EF5350;
+				position: relative;
+				padding: 5px 10px;
+				border-radius: 8px;
+				color: white;
+			}
+			
+			.my_message .talk .me .myword::after {
+				content: '';
+				width: 0;
+				height: 0;
+				border-width: 10px;
+				border-style: solid;
+				border-top-color: transparent;
+				border-right-color: transparent;
+				border-bottom-color: transparent;
+				border-left-color: #EF5350;
+				position: absolute;
+				top: 16px;
+				right: -20px;
+			}
+			/*对方的话*/
+			
+			.my_message .talk .fri {
+				line-height: 40px;
+				text-align: left;
+			}
+			
+			.my_message .talk .fri .myword {
+				display: inline-block;
+				background-color: skyblue;
+				position: relative;
+				padding: 5px 10px;
+				border-radius: 8px;
+				color: #eee;
+			}
+			
+			.my_message .talk .fri .myword::after {
+				content: '';
+				width: 0;
+				height: 0;
+				border-width: 10px;
+				border-style: solid;
+				border-top-color: transparent;
+				border-right-color: skyblue;
+				border-bottom-color: transparent;
+				border-left-color: transparent;
+				position: absolute;
+				top: 16px;
+				left: -20px;
+			}
+			/*发送消息栏*/
+			
+			.my_message .my_talk {
+				position: relative;
+				width: 90%;
+				height: 13%;
+				margin: 10px auto;
+			}
+			
+			.my_message .my_talk #messTextDiv {
+				position: absolute;
+				width: 80%;
+				height: 98%;
+				border-radius: 5px;
+				box-shadow: 0px 2px 2px 2px #A6E7FF;
+				overflow: hidden;
+			}
+			
+			.my_message .my_talk #messTextDiv #messText {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				box-sizing: border-box;
+				border: none;
+				font-size: 20px;
+				padding: 5px;
+			}
+			
+			.my_message .my_talk #messBtnDiv {
+				position: absolute;
+				right: 0;
+				bottom: 0;
+				width: 18%;
+				height: 98%;
+				border-radius: 5px;
+				overflow: hidden;
+				box-shadow: 0px 2px 2px 2px #ccc;
+			}
+			
+			.my_message .my_talk #messBtnDiv #messBtn {
+				position: absolute;
+				width: 100%;
+				height: 100%;
+				box-sizing: border-box;
+				background-color: #EF5350;
+				border: none;
+				color: white;
+				cursor: pointer;
+				font-size: 22px;
+			}
+			
+			.my_message .my_talk #messBtnDiv #messBtn:hover {
+				background-color: #F16A67;
+			}
+		</style>
+		
 		<script type="text/javascript" src="js/jquery-1.11.1.js"></script>
 		<script type="text/javascript" src="js/js.js"></script>
-		<script type="text/javascript">
+	<script type="text/javascript">
 			$(window).ready(function() {
+				$("#contactBtn").click(function(){
+						 
+					$(".cover").show();
+				});
 				
+				$(".close").click(function(){
+					$(".cover").hide();
+				});
+				
+				$("#messBtn").click(function(){
+						
+						var textWord = $("#messText").val();
+						//获取当前时间
+						var now = new Date();
+						var nowdata = now.getFullYear() + "/" +((now.getMonth()+1)<10?"0":"")+(now.getMonth()+1)+"/"+(now.getDate()<10?"0":"")+now.getDate()+
+								   " " + now.getHours() + ":" + now.getMinutes();
+						var newStr = '<div class="me" data-time="'+nowdata+'">'+
+									 '<div class="myword"><span>'+textWord+'</span></div>'+
+									 '</div>';
+						 //alert($("#contactBtn").attr("data-fromId"));
+						if(textWord){
+							$(".talk").append(newStr);
+							//添加至聊天内容
+							var fromId=$("#contactBtn").attr("data-fromId");
+										
+							 $.ajax({
+								    type:"post",
+									url:"HHTransaction/message_sendMessage.action",
+									data:{fromId:fromId,messageContent:textWord},
+									//dataType:"json",
+				                   success:function(data){	
+				                	  // alert(textWord);
+				               	     
+				                    },
+				                   error:function(data){
+					                  alert("发送失败~");				
+				                      }
+				
+			                    });	
+							
+								
+						}						
+						$('.talk').scrollTop( $('.talk')[0].scrollHeight );
+						$("#messText").val("");
+					});
+					
 				
 			});
 		</script>
 		
 	</head>
 	<body>
+	<div class="cover">
+			<div class="my_message">
+				<div class="close"><span>x</span></div>
+				<!--消息框-->
+				<div class="talk">
+					<!--<div class="more">
+						<a href="#">查看更多</a>
+					</div>-->
+				</div>
+				<!--发送消息区域-->
+				<div class="my_talk">
+					<div id="messTextDiv">
+						<input type="text" name="message" id="messText" placeholder="在这里输入">
+						</input>
+					</div>
+					<div id="messBtnDiv">
+						<input type="submit" name="mesBtn" id="messBtn" value="发送" />
+					</div>
+				</div>
+
+			</div>
+		</div>
 		<!--header开始-->
 		<div id="header">
 			<div>
@@ -113,17 +377,17 @@
 					 <nav class="float-right">
 						<ul id="navlist">
 							<li id="put">
-								<a href="#">我要发布</a>
+								<a href="put.jsp">我要发布</a>
 							</li>
 							<li id="mess">
-								<a href="mess.jsp">消息</a>
+								<a href="message_getMessageForCurr.action">消息</a>
 							</li>
 							
 								<li id="my">
 								<a href="vip_getVipIntroduction.action">${current_user.vipNickName}</a>
 								<ul id="my-2" style="display: none;">
 									<li>
-										<a href="#" style="color: black;">购物车</a>
+										<a href="cartItem_getCartItem.action" style="color: black;">购物车</a>
 									</li>
 									<li>
 										<a href="#" style="color: black;">订单</a>
@@ -211,7 +475,7 @@
 					
 						<input type="submit" name="" value="加入购物车" onclick="addCartItem(${goods.goodsId})">
 						<input type="submit" name="" value="购买">
-						<input type="submit" name="" value="联系他">
+						<input type="submit" name="" value="联系他" id="contactBtn" data-fromId="${goods.goodsVipId.getVipId()}">
 						
 					</div>
 				</div>
