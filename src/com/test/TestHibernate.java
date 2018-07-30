@@ -281,10 +281,15 @@ public class TestHibernate {
 	  OrderService orderservice;		
 	  orderservice=(OrderService)ac.getBean("orderService");
 	  Order order = new Order();
-	  order.setOrderAddress("test");
+	  order.setOrderAddress("test18/6/20");
 	  
-	  int[] goodsArr= {56,57,58,59,60};
-	  orderservice.insertOrder(order,goodsArr);
+	  String str = "79,80,81,";
+	 // String[] a = str.split(",");
+//	for(int i=0;i<a.length;i++) {
+//		System.out.println(a[i]);
+//	}
+	  //int[] goodsArr= {56,57,58,59,60};
+	  orderservice.insertOrder(order,str);
 	  
    }
    
@@ -295,4 +300,29 @@ public class TestHibernate {
 	   JSONObject json = new JSONObject().parseObject(str);
 	   System.out.println(json.get("img"));
    }
+   
+   @Test
+   public void testOrder() {
+	   //添加一个订单信息
+	  OrderService orderservice;		
+	  orderservice=(OrderService)ac.getBean("orderService");
+	  Order order =orderservice.getOrder(13);
+	  
+	 orderservice.getOrderArr(service.getCurrentVop(39));
+	  
+
+	  
+   }
+   
+	@Test
+	  public void testCartDels() {
+		
+		 CartItemService service;		
+		 service=(CartItemService)ac.getBean("cartItemService");
+		 CartService cartservice;
+		 cartservice=(CartService)ac.getBean("cartService");
+         String goodsIds = "70,71,72,";
+         service.deleteCartItem(39, goodsIds);
+         //cartItemService.deleteCartItem(current_user.getVipId(), goodsIdArr);
+	}
 }

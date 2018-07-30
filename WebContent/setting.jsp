@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@taglib prefix="s" uri="/struts-tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -43,6 +44,9 @@
 			    background-color: #EF5350;
 			    box-shadow: 0px 2px 2px 2px #ccc;
 			    border: none;
+			}
+			#exitBtn a{
+				text-decoration:none;
 			    color: white;
 			}
 		</style>
@@ -51,12 +55,16 @@
 		<script type="text/javascript" src="js/my-js.js"></script>
 		<script type="text/javascript">
 			$(function(){
-				var img = {
-					'imgsrc':'img/img_myinfo/myimage.jpg'
-				};
-				
-				$(".e_img img").attr("src",img.imgsrc);
+
+				var imagsrc = $("#my_img").find("img").attr("data-type");
+				//alert(imagsrc);
+				var json = eval('(' + imagsrc + ')');
+				//alert(json.img);
+				$("#my_img").find("img").attr("src",json.img);
+				$(".e_img img").attr("src",json.img);
 			});
+			
+
 		</script>
 	</head>
 
@@ -77,17 +85,17 @@
 								<a href="put.jsp">我要发布</a>
 							</li>
 							<li id="mess">
-								<a href="#">消息</a>
+								<a href="message_getMessageForCurr.action">消息</a>
 							</li>
 							
 								<li id="my">
 								<a href="my.jsp">${current_user.vipNickName}</a>
 								<ul id="my-2" style="display: none;">
 									<li>
-										<a href="#" style="color: black;">购物车</a>
+										<a href="cartItem_getCartItem.action" style="color: black;">购物车</a>
 									</li>
 									<li>
-										<a href="#" style="color: black;">订单</a>
+										<a href="order_getOrderArr.action" style="color: black;">订单</a>
 									</li>
 									<li>
 								        <a href="vip_logout.action" style="color: black;">退出</a>
@@ -129,27 +137,31 @@
 		<div class="content">
 			<div class="banner">
 				<div id="my_img">
-					<a href="#"><img/></a>
-				</div>
-				<div id="myname">
-					<a href="#"><span></span></a>
-				</div>
+					<a href="vip_getVipIntroduction.action"><img data-type='${current_user.vipIntroduction}' /></a>
+				    </div>
+				    <div id="myname">
+					<a href="#"><span>${current_user.vipNickName }</span></a>
+				    </div>
 				<ul class="banner-ul">
 					<li>
-						<a href="my.html">编辑资料</a>
+						<a href="vip_getVipIntroduction.action">编辑资料</a>
 					</li>
 					<li>
-						<a href="mess.html">我的消息</a>
+						<a href="message_getMessageForCurr.action">我的消息</a>
 					</li>
-					<li><a href="cart.jsp">购物车</a></li>
+					<li><a href="cartItem_getCartItem.action">购物车</a></li>
 					<li>
-						<a href="buyed.html">我买到的</a>
+						<a href="order_getOrderArr.action">我买到的</a>
 					</li>
 					<li>
-						<a href="put.html">发布闲置</a>
+					  <a href="goods_getPutGoods.action">我的闲置</a>
+					</li>
+					
+					<li>
+						<a href="put.jsp">发布闲置</a>
 					</li>
 					<li class="current">
-						<a href="javascript:;">个人设置</a>
+						<a href="setting.jsp">个人设置</a>
 					</li>
 				</ul>
 			</div>
@@ -158,7 +170,7 @@
 				<div class="outer">
 					<div class="e_img"><img/></div>
 					<div class="exit">
-						<button type="button" id="exitBtn">退出登录</button>
+						<button type="button" id="exitBtn" ><a href="vip_logout.action">退出登录</a></button>
 					</div>
 				</div>
 			</div>

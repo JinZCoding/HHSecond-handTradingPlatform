@@ -12,11 +12,11 @@
                <property name="orderAddress" ></property>
                <property name="orderPrice" type="float"></property>
                
-               <many-to-one name="orderBuyId" class="com.entity.VipInfo" >
+               <many-to-one name="orderBuyId" class="com.entity.VipInfo" lazy="false" >
                     <column name="vipBuyId"></column>
                </many-to-one>
                
-               <many-to-one name="orderSellId" class="com.entity.VipInfo" >
+               <many-to-one name="orderSellId" class="com.entity.VipInfo" lazy="false" >
                     <column name="vipSellId"></column>
                </many-to-one>
             

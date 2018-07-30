@@ -14,6 +14,8 @@ import com.entity.Cart;
 import com.entity.CartItem;
 import com.entity.CartItemPk;
 import com.entity.Goods;
+import com.entity.OrderItem;
+import com.entity.OrderItemPk;
 import com.utils.Page;
 
 @Service("cartItemService")
@@ -136,6 +138,45 @@ public void setCartService(CartService cartService) {
 		baseDao.delete(cartItem);
 		
 	
+	}
+
+//批量删除
+	@Override
+	public void deleteCartItem(int cartId, String goodsIdStr) {
+		
+		//怎么从数据库中取出这个cartItem
+		Cart find_cart = cartService.getCart(cartId);
+		
+		//批量删除与更新
+		String[] goodsIdArr=goodsIdStr.split(",");
+		for(int i=0;i<goodsIdArr.length;i++) {
+		  int goodsId = Integer.parseInt(goodsIdArr[i]);
+			
+		Goods find_goods = goodsService.findGoods(goodsId);
+		CartItem c = baseDao.get("from CartItem where cartId=? and goodsId=?", new Object[] {find_cart,find_goods});
+		
+		//更新一次cart
+		
+		Cart cart = c.getCartId();	
+		int countNum = cart.getCartNum()-1;
+		cart.setCartNum(countNum);
+		
+		Goods goods = c.getGoodsId();
+		float countPrice = cart.getCartPrice()-goods.getGoodsPrice();
+		cart.setCartPrice(countPrice);
+		
+		cartService.updateCart(cart);
+		
+		
+		//先取出item后删除
+		CartItemPk cartItemPk = new CartItemPk(cartId,goodsId);
+		CartItem cartItem = new CartItem();
+		cartItem.setCartItemPk(cartItemPk);
+		baseDao.delete(cartItem);
+		
+		}
+		
+		
 	}
 
 

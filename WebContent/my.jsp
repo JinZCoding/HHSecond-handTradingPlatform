@@ -223,7 +223,7 @@
 										<a href="cartItem_getCartItem.action" style="color: black;">购物车</a>
 									</li>
 									<li>
-										<a href="#" style="color: black;">订单</a>
+										<a href="order_getOrderArr.action" style="color: black;">订单</a>
 									</li>
 									<li>
 								        <a href="vip_logout.action" style="color: black;">退出</a>
@@ -279,16 +279,16 @@
 					</li>
 					<li><a href="cartItem_getCartItem.action">购物车</a></li>
 					<li>
-						<a href="#">我买到的</a>
+						<a href="order_getOrderArr.action">我买到的</a>
 					</li>
 					<li>
-						<a href="#">我的闲置</a>
+						<a href="goods_getPutGoods.action">我的闲置</a>
 					</li>
 					<li>
 						<a href="put.jsp">发布闲置</a>
 					</li>
 					<li>
-						<a href="#">个人设置</a>
+						<a href="setting.jsp">个人设置</a>
 					</li>
 				</ul>
 			</div>
@@ -316,7 +316,7 @@
 						<label>Q&thinsp;&thinsp;Q：</label><input type="text" name="QQ" value="" id="QQ"/><br />
 						<label>手机：</label><input type="text" name="tel" value=""  id="tel"/><br />
 						<label>院系：</label><input type="text" name="studep" value="" id="studep"/><br />
-						<label>密码：</label><input type="password" name="stupwd" value="" id="stupwd" /><br />
+						
 						<input type="submit" value="保存" id="sub" /><br />
 					</form>
 				</div>

@@ -213,10 +213,10 @@
 								<a href="vip_getVipIntroduction.action">${current_user.vipNickName}</a>
 								<ul id="my-2" style="display: none;">
 									<li>
-										<a href="#" style="color: black;">购物车</a>
+										<a href="cartItem_getCartItem.action" style="color: black;">购物车</a>
 									</li>
 									<li>
-										<a href="#" style="color: black;">订单</a>
+										<a href="order_getOrderArr.action" style="color: black;">订单</a>
 									</li>
 									<li>
 								        <a href="vip_logout.action" style="color: black;">退出</a>

@@ -21,7 +21,7 @@
                    <column name="classifyId"></column>
                </many-to-one>
                
-               <many-to-one name="goodsVipId" class="com.entity.VipInfo" cascade="all">
+               <many-to-one name="goodsVipId" class="com.entity.VipInfo" cascade="all" lazy="false">
                     <column name="vipId"></column>
                </many-to-one>
              

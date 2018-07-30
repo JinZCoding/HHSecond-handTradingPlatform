@@ -39,7 +39,7 @@ public class GoodsAction extends ActionSupport {
     String imgfileContentType;
     //商品信息
      String goodsName;
-    int goodsPrice;
+     int goodsPrice;
      String goodsClassify;//类型名
      String goodsIntroduction;//
 	
@@ -176,7 +176,7 @@ public class GoodsAction extends ActionSupport {
 	}
 	
 	//发布商品
-	public String putGoods() throws IOException {
+	public String  putGoods() throws IOException {
 		
 		HttpServletRequest request = ServletActionContext.getRequest();	
 		Map<String,Object> session = ServletActionContext.getContext().getSession();
@@ -193,11 +193,49 @@ public class GoodsAction extends ActionSupport {
 			VipInfo vipinfo = (VipInfo)session.get("current_user");
 			goods.setGoodsVipId(vipinfo);
 			goods.setGoodsStatus(1);
+			goods.setGoodsNum(1);
 			
 			goodService.insertGoods(imgfile, filePath, imgfileFileName,goods);
 	        System.out.println("添加成功");
 	        		
-		return "put";
+		return "index";
 	}
+	
+	//获取当前用户发布的所有商品
+	public String getPutGoods() {
+
+		HttpServletRequest request = ServletActionContext.getRequest();	
+		Map<String,Object> session = ServletActionContext.getContext().getSession();
+		VipInfo current_user = (VipInfo) session.get("current_user");
+		if(page==null) {
+			page=1;
+		}
+		int count = goodService.getGoodsCountByVipId(current_user).intValue();
+		Page pageBean = new Page(page,5,count);
+		String pageSplit = new PageSplitUtil().pageSplit2("goods_getPutGoods.action?page=", pageBean);
+		JSONArray shopArr = goodService.getshopArr(current_user, pageBean); 
+		request.setAttribute("count", count);
+		request.setAttribute("shopArr", shopArr);
+		request.setAttribute("pageSplit", pageSplit);
+		return "mySpare";
+	}
+	
+	
+	//当前用户删除自己发布的商品
+	public String delPutGoods() {
+		Map<String, Object> session = ServletActionContext.getContext().getSession();
+		VipInfo current_user = (VipInfo) session.get("current_user");
+		if(current_user==null) {
+			//如果未登陆给出提示信息
+			
+		}else {			
+			goodService.deletePutGoods(current_user, goodsId);
+		}
+		return null;
+		
+	}
+	
+	
+
 
 }

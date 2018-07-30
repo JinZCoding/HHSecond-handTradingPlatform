@@ -32,6 +32,8 @@
 			<result name="goodsList">/goodsList.jsp</result>
 			<result name="detail">/detail.jsp</result>
 			<result name="put">/put.jsp</result>
+			<result name="index">/index.jsp</result>
+			<result name="mySpare">/mySpare.jsp</result>
 		</action>
 	</package>
 	<!-- ================================vipInfo服务end=========================== -->
@@ -45,6 +47,15 @@
 		</action>
 	</package>
 	<!-- ================================cart/cartItem服务end=========================== -->
+	
+	<!-- ================================order/orderItem服务start=========================== -->
+	<package name="action_order" extends="struts-default"
+		namespace="/">
+		<action name="order_*" method="{1}" class="orderAction">
+            <result name="buyed">/buyed.jsp</result>
+		</action>
+	</package>
+	<!-- ================================order/orderItem服务end=========================== -->
 
 
 	<!-- ================================message服务start=========================== -->

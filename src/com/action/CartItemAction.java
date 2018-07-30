@@ -23,6 +23,7 @@ public class CartItemAction extends ActionSupport{
 
 	int goodsId;
 	Integer page;
+	String goodsIdArr;
 
 	@Resource
 	CartItemService cartItemService;
@@ -52,20 +53,19 @@ public class CartItemAction extends ActionSupport{
 	public void setGoodsId(int goodsId) {
 		this.goodsId = goodsId;
 	}
-	
-	
-
-
 
 	public Integer getPage() {
 		return page;
 	}
 
-
-
-
 	public void setPage(Integer page) {
 		this.page = page;
+	}
+	public String getGoodsIdArr() {
+		return goodsIdArr;
+	}
+	public void setGoodsIdArr(String goodsIdArr) {
+		this.goodsIdArr = goodsIdArr;
 	}
 
 
@@ -96,6 +96,20 @@ public class CartItemAction extends ActionSupport{
 		}
 		return null;
 	}
+	
+	//批量删除购物车商品
+	public String delCartArr() {
+		Map<String, Object> session = ServletActionContext.getContext().getSession();
+		VipInfo current_user = (VipInfo) session.get("current_user");
+		if(current_user==null) {
+			//如果未登陆给出提示信息
+			
+		}else {			
+			cartItemService.deleteCartItem(current_user.getVipId(), goodsIdArr);
+		}
+		return null;
+	}
+	
 	
 	
 	

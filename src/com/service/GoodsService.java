@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.alibaba.fastjson.JSONArray;
 import com.entity.Goods;
+import com.entity.VipInfo;
 import com.utils.Page;
 
 public interface GoodsService {
@@ -18,8 +19,17 @@ public interface GoodsService {
 	void insertGoods(File file,String filePath,String fileName,Goods goods);
 	//封装一个Goods的json数组
 	JSONArray getGoodsJsonArr(List<Goods> list);
-	//读取图片
-	File getGoodsImg(Goods goods);
+
+	
+	
+	
+	//我发布的商品的总数量
+	Long getGoodsCountByVipId(VipInfo id);
+	//找到所有我发布的商品封装一个Goods的json数组
+	JSONArray getshopArr(VipInfo id,Page page);
+	
+	//删除发布商品没有批量
+	void deletePutGoods(VipInfo id,int goodsId);
 	
 	
 

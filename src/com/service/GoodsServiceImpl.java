@@ -18,6 +18,7 @@ import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.dao.BaseDao;
 import com.entity.Goods;
+import com.entity.VipInfo;
 import com.utils.FtpBean;
 import com.utils.FtpUtil;
 import com.utils.Page;
@@ -80,25 +81,21 @@ public class GoodsServiceImpl  implements GoodsService{
 		//图片保存到了本地
 			File tempFile  = new File(filePath);
 			FileUtil.copyFile(file, tempFile);
-			in = new FileInputStream(new File(filePath));
-			System.out.println(in);
+//			in = new FileInputStream(new File(filePath));
+//			System.out.println(in);
 		} catch (Exception e1) {
 			
 			e1.printStackTrace();
 		}
-		
-
-		//System.out.println("filePath: "+filePath);
-		//System.out.println("fileName: "+fileName);
-		
-		FtpBean ftpBean = new FtpBean("10.115.15.162", 21, "zhu", "123456", "G:/ftp/", fileName, in,"");
-		FtpUtil ftp = new FtpUtil();
+	
+//		FtpBean ftpBean = new FtpBean("10.115.15.162", 21, "zhu", "123456", "G:/ftp/", fileName, in,"");
+//		FtpUtil ftp = new FtpUtil();
 		//图片上传到ftp上
-		boolean flag=ftp.uploadFile(ftpBean);
-		if(flag) {
+//		boolean flag=ftp.uploadFile(ftpBean);
+//		if(flag) {
 			//goods.setGoodsImage(ftpBean.getFtpPath()+fileName);
 			//System.out.println("添加图片");
-		}
+//		}
 		
 		goods.setGoodsImage("img/goods/"+fileName);
     	 baseDao.save(goods);
@@ -120,7 +117,7 @@ public class GoodsServiceImpl  implements GoodsService{
 		return baseDao.count(hql, new Object[] {name,name});
 	}
 
-//返回一个GoodsList的json数组
+//返回一个GoodsList的json数组(商品展示)
 	@Override
 	public JSONArray getGoodsJsonArr(List<Goods> list) {
 		JSONArray GoodsArr = new JSONArray();
@@ -142,11 +139,41 @@ public class GoodsServiceImpl  implements GoodsService{
 		return GoodsArr;
 	}
 
-	//返回图片文件
+
+
+
 	@Override
-	public File getGoodsImg(Goods goods) {
-		File file = new File(goods.getGoodsImage());
-		return file;
+	public Long getGoodsCountByVipId(VipInfo id) {
+		String hql="select count(*) from Goods where goodsVipId=?";
+		return baseDao.count(hql, new Object[] {id});
+	}
+
+	//获取我发布的商品，将其封装成JSON
+	@Override
+	public JSONArray getshopArr(VipInfo id,Page page) {
+		String hql="from Goods where goodsVipId=?";
+		List<Goods> list =  baseDao.find(hql, new Object[] {id}, page.getNowpage(), page.getPagesize());
+		JSONArray shopArr = new JSONArray();
+		for(Goods goods:list) {
+			JSONObject temp = new JSONObject();
+			temp.put("goodsImg", goods.getGoodsImage());
+			temp.put("goodsName", goods.getGoodsName());
+			temp.put("goodsPrice",goods.getGoodsPrice());
+			temp.put("goodsNum", goods.getGoodsNum());
+			temp.put("goodsId", goods.getGoodsId());
+			temp.put("sellerId", goods.getGoodsVipId().getVipId());
+		   shopArr.add(temp);
+		}
+		return shopArr;
+	}
+//删除当前用户发布的商品
+	@Override
+	public void deletePutGoods(VipInfo id, int goodsId) {
+		//String[] goodsIdArr = goodsIdStr.split(",");
+			Goods goods = findGoods(goodsId);
+			//baseDao.delete(goods);
+			baseDao.executeHql("delete  from Goods where goodsVipId=? and goodsId=?",new Object[] {id,goodsId});
+		
 	}
 
 

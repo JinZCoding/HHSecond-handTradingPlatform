@@ -447,10 +447,10 @@
 								<a href="vip_getVipIntroduction.action">${current_user.vipNickName}</a>
 								<ul id="my-2" style="display: none;">
 									<li>
-										<a href="#" style="color: black;">购物车</a>
+										<a href="cartItem_getCartItem.action" style="color: black;">购物车</a>
 									</li>
 									<li>
-										<a href="#" style="color: black;">订单</a>
+										<a href="order_getOrderArr.action" style="color: black;">订单</a>
 									</li>
 									<li>
 								        <a href="vip_logout.action" style="color: black;">退出</a>
@@ -504,18 +504,18 @@
 					<li class="current">
 						<a href="message_getMessageForCurr.action">我的消息</a>
 					</li>
-					<li><a href="#">购物车</a></li>
+					<li><a href="cartItem_getCartItem.action">购物车</a></li>
 					<li>
-						<a href="#">我买到的</a>
+						<a href="order_getOrderArr.action">我买到的</a>
 					</li>
 					<li>
-						<a href="#">我的闲置</a>
+						<a href="goods_getPutGoods.action">我的闲置</a>
 					</li>
 					<li>
 						<a href="put.jsp">发布闲置</a>
 					</li>
 					<li>
-						<a href="#">个人设置</a>
+						<a href="setting.jsp">个人设置</a>
 					</li>
 				</ul>
 			</div>

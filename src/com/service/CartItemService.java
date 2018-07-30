@@ -11,6 +11,8 @@ public interface CartItemService {
 	
    void insertCartItem(int cartId,int goodsId);
    void deleteCartItem(int cartId,int goodsId);
+   //批量删除
+   void deleteCartItem(int cartId,String goodsIdArr);
   
    //分页
    List<CartItem> findCartItemList(Cart cart,Page page);
